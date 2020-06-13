@@ -1,0 +1,50 @@
+@import '../../styles/base';
+
+.home {
+  position: relative;
+  &__player-scene {
+    width: 100vw;
+    height: 100vh;
+    & canvas {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      //overflow: hidden;
+      //background-image: url(../../assets/images/callasto_neon.jpg); 
+      //background-size: cover;
+      //background-position: center;
+      //overflow: visible;
+      //color: #606063;
+      }
+  }
+  &__img {
+    //position: fixed;
+    width: 100vw;
+    height: 100vh;
+  }
+  &__content-container {
+    position: absolute;
+    top: 0;
+  }
+  &__title {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1rem;
+    width: 100%;
+    opacity: 0;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    line-height: 1.75rem;
+    color: white;
+    @include tablet {
+      font-size: 2rem;
+      line-height: 2.75rem
+    }
+  }
+}
