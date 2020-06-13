@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.scss';
-import PlayerScene from '../../components/PlayerScene';
+import Scene from '../../components/Scene';
+import Demos from '../../components/Demos/Demos'
 //import Contact from '../Contact/Contact';
 //import Shop from '../Shop/Shop';
 //import AboutUs from '../AboutUs/AboutUs';
@@ -15,7 +16,8 @@ const Home = ({ match }) => {
   <>
     <div className="home" 
     >
-      <PlayerScene />
+      <Scene />
+      <Demos />
       {/*<div className="home__content-container">
         { path === "/nav/shop" && <Shop /> }
         { path === "/nav/contact" && <Contact /> }

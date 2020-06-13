@@ -1,0 +1,9 @@
+@import '../../styles/base';
+
+.demo {
+
+  &__link-content {
+    max-width: 100%; 
+    border-radius: 100%;
+  }
+}

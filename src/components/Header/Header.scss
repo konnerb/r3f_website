@@ -1,18 +1,27 @@
+@import '../../styles/base';
+
 .header {
   z-index: 2;
   width: 100vw;
   position: fixed;
   display: flex;
   justify-content: space-between;
+  padding: 0px 24px;
   &__links {
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    //width: 50%;
   }
   &__link {
     color: white;
     text-decoration: none;
     font-size: 2rem;
+    & span {
+      font-size: 1.8rem;
+      margin-left: 0.25rem;
+      display: inline-block;
+      transform: rotate(315deg);
+    }
     &:hover {
       color: #53e0b3;
     }

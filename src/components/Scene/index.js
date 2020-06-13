@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import Cube from './Cube/Cube';
+import Sphere from './Sphere/Sphere'
 import Lights from './Lights/Lights';
 //import OrbitControls from '../../components/PlayerScene/OrbitControls/OrbitControls';
 import { Canvas } from 'react-three-fiber';
@@ -23,7 +23,7 @@ const PlayerScene = () => (
         //}}>
       >
           <Terrain /> 
-          <Cube />
+          <Sphere />
           <Lights />
           {/*<OrbitControls />*/}
           <Stars />

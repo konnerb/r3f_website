@@ -1,11 +1,10 @@
 import React from "react";
-import {useResource} from 'react-three-fiber'
+//import {useResource} from 'react-three-fiber';
 
 
 const Lights = () => {
-  //const [ref, pLight1] = useResource();
-  //const [ref2, pLight2] = useResource();
-  const [ref3, sLight3] = useResource();
+
+  //const [ref3, sLight3] = useResource();
 
   return (
     <>
@@ -14,7 +13,7 @@ const Lights = () => {
       intensity={0.15}
       />
       <spotLight
-        ref={ref3}
+        //ref={ref3}
         //penumbra={1}
         //angle={Math.PI / 2.85}
         intensity={0.75} //2.5
@@ -22,7 +21,7 @@ const Lights = () => {
         color={0xff0000} //0xd3d3d3
         castShadow
       >
-      {sLight3 && <spotLightHelper args={[sLight3]} />}
+      {/*{sLight3 && <spotLightHelper args={[sLight3]} />}*/}
       </spotLight>
     </>
   );
