@@ -14,7 +14,7 @@ const store = {
     },
     {
       title: `Gamma Correction`,
-      href: `https://codesandbox.io/embed/r3f-gamma-correction-kmb9i"`,
+      href: `https://codesandbox.io/embed/r3f-gamma-correction-kmb9i`,
       src: `https://camo.githubusercontent.com/ce1c0c0e62bac842ee9f633ccbae8739d7fba9a5/68747470733a2f2f692e696d6775722e636f6d2f65364e68527a362e676966`,
       dataCanonicalSrc: `https://i.imgur.com/e6NhRz6.gif`
     },
