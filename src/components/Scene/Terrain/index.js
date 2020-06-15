@@ -48,7 +48,7 @@ const Terrain = ({ aspect, aspectMult }) => {
     > 
       <sphereBufferGeometry 
         attach="geometry" 
-        args={[150, 84, 100]} 
+        args={[15, 8, 100]} //150, 84, 100 
       />
       <meshPhongMaterial
         side={DoubleSide}

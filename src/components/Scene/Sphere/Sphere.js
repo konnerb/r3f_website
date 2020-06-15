@@ -7,7 +7,7 @@ const Cube = () => {
 
   let theta = 0;
   useFrame(() => {
-    let r = 250;
+    let r = 40;
     let dTheta = 2 * Math.PI / 3000;
 
     theta += dTheta;
@@ -21,9 +21,9 @@ const Cube = () => {
       ref={ref}
       position={[0, 0, 0]}
       castShadow 
-      //receiveShadow
+      receiveShadow
     >
-      <sphereBufferGeometry attach="geometry" args={[25, 25, 25]} />
+      <sphereBufferGeometry attach="geometry" args={[4, 4, 25]} />
       <meshLambertMaterial 
         attach="material" 
         //side={THREE.DoubleSide} 

@@ -17,7 +17,7 @@ const Home = ({ match }) => {
     <div className="home" 
     >
       <Scene />
-      <Demos />
+      {/*<Demos />*/}
       {/*<div className="home__content-container">
         { path === "/nav/shop" && <Shop /> }
         { path === "/nav/contact" && <Contact /> }

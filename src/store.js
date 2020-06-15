@@ -1,11 +1,24 @@
+import { createRef } from "react"
+
 const store = {
+  sections: 9,
+  pages: 8,
+  zoom: 75,
+  top: createRef(),
   addIpsum: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
   content: {
     why: `Building dynamic scene graphs declaratively with re-usable components makes dealing with Threejs easier and brings order and sanity to your codebase. These components react to state changes, are interactive out of the box and can tap into React's infinite ecosystem.`,
     limitations: `None. Everything that works in Threejs will work here. In contrast to "bindings" where a library ships/maintains dozens of wrapper components, it just reconciles JSX to Threejs dynamically: <mesh /> simply is another expression for new THREE.Mesh(). It does not know or target a specific Threejs version nor does it need updates for modified, added or removed upstream features.`,
     isItSLower: `No. Rendering performance is up to Threejs and the GPU. Components may participate in the renderloop outside of React, without any additional overhead. React is otherwise very efficient in building and managing component-trees, it could potentially outperform manual/imperative apps at scale.`,
+    images: ["/Cold_Mountians.jpg", "/Cold_Mountians1.jpg", "/Cold_Mountians2.jpg"]
   },
   demos: [
+    {
+      title: `Basic Demo`,
+      href: `https://codesandbox.io/embed/rrppl0y8l4`,
+      src: `https://camo.githubusercontent.com/e396d1b1c3940b01eee8f917c87db723da2333ec/68747470733a2f2f692e696d6775722e636f6d2f7353344172725a2e676966`,
+      dataCanonicalSrc: `https://i.imgur.com/sS4ArrZ.gif`
+    },
     {
       title: `Game`,
       href: `https://codesandbox.io/embed/r3f-game-i2160`,
