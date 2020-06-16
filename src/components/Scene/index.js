@@ -1,5 +1,5 @@
 import React, { Suspense, useRef, useEffect } from 'react';
-import { Canvas, useFrame, useLoader, Dom } from "react-three-fiber"
+import { Canvas, useFrame, useLoader} from "react-three-fiber"
 import lerp from 'lerp'
 import { TextureLoader, LinearFilter } from "three"
 import Sphere from './Sphere/Sphere'
@@ -68,8 +68,8 @@ function Stripe() {
 }
 
 function Pages() {
-  const textures = useLoader(TextureLoader, store.content.images)
-  const [img1, img2, img3] = textures.map(texture => ((texture.minFilter = LinearFilter), texture))
+  //const textures = useLoader(TextureLoader, store.content.images)
+  //const [img1, img2, img3] = textures.map(texture => ((texture.minFilter = LinearFilter), texture))
   const { contentMaxWidth, mobile } = useBlock()
   const aspect = 1.75
   const pixelWidth = contentMaxWidth * 75 //store.zoom
@@ -81,9 +81,10 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             style={{ width: pixelWidth / (mobile ? 1 : 2)}}  
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
             The substance can take you to heaven but it can also take you to hell.
             <div className="injectHTML__box"></div>
+            <button>Click ME</button>
           </HTML>
         </Content>
       </Block>
@@ -93,7 +94,7 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
             We’ve found that the people whose EEG doesn’t show any alpha-wave activity when they’re relaxed aren’t likely to respond significantly to the substance.
           </HTML>
         </Content>
@@ -111,7 +112,7 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
             Education and enlightenment.
           </HTML>
         </Content>
@@ -124,7 +125,7 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
             Education and enlightenment.
           </HTML>
         </Content>
@@ -137,37 +138,11 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
             Education and enlightenment.
           </HTML>
         </Content>
       </Block>
-      <Block factor={2.0} offset={5}>
-        <Content>
-          <Block factor={-0.5}>
-            <Cross />
-          </Block>
-          <HTML 
-            className="injectHTML" 
-            style={{width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
-            Education and enlightenment.
-          </HTML>
-        </Content>
-      </Block>
-      <Block factor={1.5} offset={6}>
-        <Content>
-          <Block factor={-0.5}>
-            <Cross />
-          </Block>
-          <HTML 
-            className="injectHTML" 
-            style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, -contentMaxWidth / 2 / aspect - 0.4, 1]}>
-            Education and enlightenment.
-          </HTML>
-        </Content>
-      </Block> 
     </>
   )
 }
@@ -196,7 +171,7 @@ const PlayerScene = () => {
         //shadowMap
         concurrent
         //orthographic
-        camera={{ zoom: 6, position: [0, 0, 200] }}
+        camera={{ zoom: 30, position: [0, 0, 500] }}
         //onCreated={({ gl }) => {
         //  //gl.toneMapping = THREE.ACESFilmicToneMapping
         //  //gl.outputEncoding = THREE.sRGBEncoding
