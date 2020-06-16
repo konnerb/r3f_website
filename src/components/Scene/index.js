@@ -7,11 +7,11 @@ import Lights from './Lights/Lights';
 import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
 import Terrain from './Terrain';
-import Demos from '../Demos/Demos'
-import store from '../../store'
-import { Block, useBlock } from "../Blocks/Blocks"
-import "./CustomMaterial/CustomerMaterial"
-import * as THREE from 'three'
+import Demos from '../Demos/Demos';
+import store from '../../store';
+import { Block, useBlock } from "../Blocks/Blocks";
+import "./CustomMaterial/CustomerMaterial";
+import * as THREE from 'three';
 
 function Plane({ color = "white", map, ...props }) {
   const { viewportHeight, offsetFactor } = useBlock()
@@ -42,8 +42,8 @@ function Cross() {
   })
   return (
     <group ref={ref} scale={[2, 2, 2]}>
-      <Plane scale={[1, 0.2, 0.2]} color="#e2bfca" />
-      <Plane scale={[0.2, 1, 0.2]} color="#e2bfca" />
+      <Plane scale={[1, 0.2, 0.2]} color="#61dafb" />{/*#e2bfca*/}
+      <Plane scale={[0.2, 1, 0.2]} color="#61dafb" />
     </group>
   )
 }
@@ -54,7 +54,7 @@ function Content({ left, children, map }) {
   const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
   return (
     <group position={[0, 0, 0]}> {/*alignRight * (left ? -1 : 1),0,0*/}
-      <Plane scale={[contentMaxWidth, contentMaxWidth / aspect, 1]} color="#bfe2ca" map={map} />
+      <Plane scale={[contentMaxWidth, contentMaxWidth / aspect, 1]} color="#049ef4" map={map} /> {/*#bfe2ca */}
       {children}
     </group>
   )
@@ -77,25 +77,32 @@ function Pages() {
     <>
       {/* First section */}
       <Block factor={1.5} offset={0}>
-        <Content>
           <HTML 
             className="injectHTML" 
-            style={{ width: pixelWidth / (mobile ? 1 : 2)}}  
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
-            The substance can take you to heaven but it can also take you to hell.
-            <div className="injectHTML__box"></div>
-            <button>Click ME</button>
+            zIndexRange={[4, 0]}  
+            style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}} //2
+            position={[-contentMaxWidth / 2 + 1.75, contentMaxWidth / 2 / aspect - 2, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
+            <h1>R3F</h1>
+            <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
-        </Content>
       </Block>
       {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Content>
-          <HTML 
+          <HTML
             className="injectHTML" 
-            style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
+            zIndexRange={[4, 0]}  
+            //style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
             position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
-            We’ve found that the people whose EEG doesn’t show any alpha-wave activity when they’re relaxed aren’t likely to respond significantly to the substance.
+            <div className="injectHTML__description">
+              <h2>Why</h2>
+              <p>{store.content.why}</p>
+              <h2>Does it have limitations?</h2>
+              <p>{store.content.limitations}</p>
+              <h2>Is it slower than raw Threejs?</h2>
+              <p>{store.content.isItSLower}</p>
+            </div>
+
           </HTML>
         </Content>
       </Block>
@@ -111,9 +118,27 @@ function Pages() {
           </Block>
           <HTML 
             className="injectHTML" 
-            style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
-            Education and enlightenment.
+            zIndexRange={[4, 0]}  
+            style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
+          >
+            <div className="injectHTML__description">
+              <h2>Fundementals</h2>
+              <ol>
+                <li>Before you start, make sure you have a <a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene">basic grasp of Threejs.</a> </li>
+                <li>When you know what a scene is, a camera, mesh, geometry and material, more or less, fork the demo sandbox on the frontpage, try out some of the things you learn here.</li>
+                <li>Don't break your head, three-fiber is Threejs, it does not introduce new rules or assumptions. If you see a snippet somewhere and you don't know how to make it declarative yet, use it 1:1 as it is.</li>
+              </ol>
+              <h3>Some Reading Material:</h3>
+              <ul>
+                <li><a href="https://threejs.org/docs/">Threejs-docs</a></li>
+                <li><a href="https://threejs.org/examples/">Threejs-examples</a></li>
+                <li><a href="https://threejsfundamentals.org/">Threejs-fundamentals</a></li>
+                <li><a href="https://discoverthreejs.com/">Discover Threejs</a></li>
+                <li><a href="https://discoverthreejs.com/tips-and-tricks/">Do's and don'ts</a>for performance and best practices</li>
+                <li><a href="https://alligator.io/react/react-with-threejs">react-three-fiber</a>alligator.io tutorial by <a href="https://twitter.com/dghez_">@dghez_</a></li>
+              </ul>
+            </div>
           </HTML>
         </Content>
       </Block>
@@ -124,9 +149,11 @@ function Pages() {
           </Block>
           <HTML 
             className="injectHTML" 
-            style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
-            Education and enlightenment.
+            zIndexRange={[4, 0]}  
+            style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
+            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
+          >
+            <Demos />
           </HTML>
         </Content>
       </Block>
@@ -137,7 +164,8 @@ function Pages() {
           </Block>
           <HTML 
             className="injectHTML" 
-            style={{ width: pixelWidth / (mobile ? 1 : 2)}} 
+            zIndexRange={[4, 0]}  
+            style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
             position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
             Education and enlightenment.
           </HTML>
@@ -168,10 +196,10 @@ const PlayerScene = () => {
     <div className="home__player-scene">
       <Canvas 
         pixelRatio={1} //window.devicePixelRatio
-        //shadowMap
+        shadowMap
         concurrent
         //orthographic
-        camera={{ zoom: 30, position: [0, 0, 500] }}
+        camera={{ zoom: 6.5, position: [0, 0, 200] }}
         //onCreated={({ gl }) => {
         //  //gl.toneMapping = THREE.ACESFilmicToneMapping
         //  //gl.outputEncoding = THREE.sRGBEncoding
@@ -183,14 +211,14 @@ const PlayerScene = () => {
           <Terrain /> 
           <Sphere />
           <Lights />
-          <Stats />
           <OrbitControls />
           <Stars 
-            //depth={-50}  
-            //radius={25}
-            //count={75000}  
-            //factor={5}   
+          //depth={-50}  
+          //radius={50}
+          //count={75000}  
+          //factor={5}   
           />
+          <Stats />
           <Pages />
           <Startup />
         </Suspense>

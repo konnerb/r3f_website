@@ -7,8 +7,8 @@ const Cube = () => {
 
   let theta = 0;
   useFrame(() => {
-    let r = 40;
-    let dTheta = 2 * Math.PI / 3000;
+    let r = 80;
+    let dTheta = 2 * Math.PI / 4000;
 
     theta += dTheta;
     

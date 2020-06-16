@@ -7,6 +7,7 @@ const Header = () => (
   <header className="header">
     <NavLink className="header__link" to="/">React-Three-Fiber</NavLink>
     <div className="header__links">
+    <a className="header__link" href="https://github.com/react-spring/react-three-fiber/discussions" rel="noopener noreferrer" target="_blank">Discussions<span>&#10132;</span></a>
     <a className="header__link" href="https://github.com/react-spring/react-three-fiber" rel="noopener noreferrer" target="_blank">Github<span>&#10132;</span></a>
     <a className="header__link" href="https://twitter.com/0xca0a" rel="noopener noreferrer" target="_blank">Twitter<span>&#10132;</span></a>
     <a></a>

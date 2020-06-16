@@ -5,7 +5,6 @@ import { noise } from "./perlin";
 //import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'; 
 //const perlin = new ImprovedNoise(), quality = 1, z = Math.random() * 100;
 import { DoubleSide } from "three";
-console.log(noise)
 const Terrain = ({ aspect, aspectMult }) => {
     const [t, setT] = useState(0.0);
     const { viewport, size } = useThree()
@@ -48,7 +47,7 @@ const Terrain = ({ aspect, aspectMult }) => {
     > 
       <sphereBufferGeometry 
         attach="geometry" 
-        args={[10, 10, 100]} //150, 84, 100 
+        args={[20, 20, 100]} //150, 84, 100 
       />
       <meshPhongMaterial
         side={DoubleSide}
