@@ -2,7 +2,7 @@
 
 .demo {
   height: 100%;
-  width: 70%;
+  width: 100%;
   //background-color: black;
   display: flex;
   flex-wrap: wrap;
@@ -14,7 +14,7 @@
     height: 100%;
   }
   &__content {
-    max-width: 33%; 
+    max-width: 70%; 
     border-radius: 25px;
     //filter: grayscale(30%);
     //&:hover {

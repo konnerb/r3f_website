@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect } from 'react';
+import React, { Suspense, useRef, useEffect, useMemo } from 'react';
 import { Canvas, useFrame, useLoader} from "react-three-fiber"
 import lerp from 'lerp'
 import { TextureLoader, LinearFilter } from "three"
@@ -13,6 +13,7 @@ import { Block, useBlock } from "../Blocks/Blocks";
 import "./CustomMaterial/CustomerMaterial";
 import * as THREE from 'three';
 
+//console.log(Demp)
 function Plane({ color = "white", map, ...props }) {
   const { viewportHeight, offsetFactor } = useBlock()
   const material = useRef()
@@ -69,7 +70,8 @@ function Stripe() {
 
 function Pages() {
   //const textures = useLoader(TextureLoader, store.content.images)
-  //const [img1, img2, img3] = textures.map(texture => ((texture.minFilter = LinearFilter), texture))
+  //const images = useLoader(TextureLoader, store.demos.map(({ dataCanonicalSrc }) => dataCanonicalSrc))
+  //useMemo(() => images.forEach(texture => (texture.minFilter = LinearFilter)), [images])
   const { contentMaxWidth, mobile } = useBlock()
   const aspect = 1.75
   const pixelWidth = contentMaxWidth * 75 //store.zoom
@@ -81,8 +83,8 @@ function Pages() {
             className="injectHTML" 
             zIndexRange={[4, 0]}  
             style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}} //2
-            position={[-contentMaxWidth / 2 + 1.75, contentMaxWidth / 2 / aspect - 2, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
-            <h1>R3F</h1>
+            position={[-contentMaxWidth / 2 + 1.25, contentMaxWidth / 2 / aspect - 2.25, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
+            <h1>REACT-THREE-FIBER</h1>
             <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
@@ -112,6 +114,17 @@ function Pages() {
       </Block>
       {/* Last section*/}
       <Block factor={1.5} offset={2}>
+        <HTML 
+          className="injectHTML" 
+          zIndexRange={[4, 0]}  
+          style={{ width: '100%'}} //2
+          position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
+        >
+          <h1>Demos</h1>
+        <Demos />
+        </HTML>
+      </Block>
+      <Block factor={2} offset={3}>
         <Content>
           <Block factor={-0.5}>
             <Cross />
@@ -142,34 +155,24 @@ function Pages() {
           </HTML>
         </Content>
       </Block>
-      <Block factor={2.0} offset={3}>
-        <Content>
-          <Block factor={-0.5}>
-            <Cross />
-          </Block>
-          <HTML 
-            className="injectHTML" 
-            zIndexRange={[4, 0]}  
-            style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
-          >
-            <Demos />
-          </HTML>
-        </Content>
-      </Block>
       <Block factor={1.5} offset={4}>
-        <Content>
-          <Block factor={-0.5}>
-            <Cross />
-          </Block>
-          <HTML 
-            className="injectHTML" 
-            zIndexRange={[4, 0]}  
-            style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
-            Education and enlightenment.
-          </HTML>
-        </Content>
+        <HTML 
+          className="injectHTML" 
+          zIndexRange={[4, 0]}  
+          style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
+          position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
+          <div className="injectHTML__code-container">
+            <h1>CODE</h1>
+            <div className="injectHTML__code">
+              <h3>$ npm install three react-three-fiber</h3>
+              <h3>$ yarn three react-three-fiber</h3>
+            </div>
+            <div className="injectHTML__code">
+              <h3>$ npm install three react-three-fiber</h3>
+              <h3>$ yarn three react-three-fiber</h3>
+            </div>
+          </div>
+        </HTML>
       </Block>
     </>
   )
