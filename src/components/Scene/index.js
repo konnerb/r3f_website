@@ -121,7 +121,7 @@ function Pages() {
           position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
         >
           <h1>Demos</h1>
-        <Demos />
+        {/*<Demos />*/}
         </HTML>
       </Block>
       <Block factor={2} offset={3}>
@@ -132,17 +132,17 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
-            style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
+            //style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
             position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
           >
             <div className="injectHTML__description">
-              <h2>Fundementals</h2>
+              <h1>Fundementals</h1>
               <ol>
                 <li>Before you start, make sure you have a <a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene">basic grasp of Threejs.</a> </li>
                 <li>When you know what a scene is, a camera, mesh, geometry and material, more or less, fork the demo sandbox on the frontpage, try out some of the things you learn here.</li>
                 <li>Don't break your head, three-fiber is Threejs, it does not introduce new rules or assumptions. If you see a snippet somewhere and you don't know how to make it declarative yet, use it 1:1 as it is.</li>
               </ol>
-              <h3>Some Reading Material:</h3>
+              <h2>Some Reading Material:</h2>
               <ul>
                 <li><a href="https://threejs.org/docs/">Threejs-docs</a></li>
                 <li><a href="https://threejs.org/examples/">Threejs-examples</a></li>
@@ -159,17 +159,18 @@ function Pages() {
         <HTML 
           className="injectHTML" 
           zIndexRange={[4, 0]}  
-          style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
+          //style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
           position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
           <div className="injectHTML__code-container">
-            <h1>CODE</h1>
+            <h1>GET STARTED</h1>
             <div className="injectHTML__code">
               <h3>$ npm install three react-three-fiber</h3>
               <h3>$ yarn three react-three-fiber</h3>
             </div>
             <div className="injectHTML__code">
-              <h3>$ npm install three react-three-fiber</h3>
-              <h3>$ yarn three react-three-fiber</h3>
+              <h3>{`import ReactDOM from 'react-dom'`}</h3>
+              <h3>{`import React, { useRef, useState } from 'react'`}</h3>
+              <h3>{`import { Canvas, useFrame } from 'react-three-fiber'`}</h3>
             </div>
           </div>
         </HTML>

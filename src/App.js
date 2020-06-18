@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
-import VirtualPlayground from './components/VirtualPlayground/VirtualPlayground'
+import Demos from './components/Demos/Demos'
 
 const App = () => (
 
@@ -13,7 +13,7 @@ const App = () => (
       <Header />
         <Switch>
           <Route exact path="/" component={ Home } />
-          <Route path="/virtualplayground/:name" component={ VirtualPlayground } />
+          <Route path="/virtualplayground/:name" component={ Demos } />
           <Route path="*" component={ NotFound } />
         </Switch>
       {/*<Footer />*/}
