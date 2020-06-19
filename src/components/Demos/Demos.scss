@@ -7,12 +7,14 @@
   display: flex;
   flex-direction: column;
   &__wrapper {
+    margin-top: 9vh;
     //height: 100%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+    overflow: scroll;
   }
   &__container {
     //width: 50%;
@@ -22,14 +24,23 @@
     width: 180px;
     height: 120px;
     border-radius: 25px;
+    margin: 0rem 1rem;
     //filter: grayscale(30%);
     //&:hover {
     //  filter: grayscale(0%);
     //}
+    overflow: hidden;
+    box-shadow: 0px 10px 30px -5px rgba(255, 255, 255, 0.9);
+    transition: box-shadow 0.5s;
+    will-change: transform;
+    &:hover {
+      box-shadow: 0px 30px 100px -10px rgba(255, 255, 255, 0.9);
+    }
   }
   &__title {
-    color: black;
+    color: white;
     font-size: 1rem;
+    padding-left: 1rem;
     margin-bottom: 0.5rem;
   }
   &__iframe {
@@ -37,7 +48,6 @@
     height:500px; 
     border:0; 
     border-radius: 4px; 
-    overflow: hidden;
   }
   &__content-button {
     cursor: pointer;

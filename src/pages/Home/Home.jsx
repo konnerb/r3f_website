@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 import Scene from '../../components/Scene';
-import Demos from '../../components/Demos/Demos'
+//import Demos from '../../components/Demos/Demos'
 //import Contact from '../Contact/Contact';
 //import Shop from '../Shop/Shop';
 //import AboutUs from '../AboutUs/AboutUs';
@@ -10,7 +10,7 @@ import Demos from '../../components/Demos/Demos'
 
 const Home = ({ match }) => {
 
-  const path = match.url
+  //const path = match.url
 
   return (
   <>

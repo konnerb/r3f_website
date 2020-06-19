@@ -7,7 +7,8 @@ import { noise } from "./perlin";
 import { DoubleSide } from "three";
 const Terrain = ({ aspect, aspectMult }) => {
     const [t, setT] = useState(0.0);
-    const { viewport, size } = useThree()
+    const { size } = useThree()
+    //console.log(viewport)
     const stopRender = (aspect >= 1.00 || size.width >= 750) ? window.scrollY <= 900 : aspect <= 1.00 ? window.scrollY <= 550 : false
     const mesh = useUpdate(({ geometry }) => {
       noise.seed(5);

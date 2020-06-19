@@ -95,11 +95,11 @@
   }
   &__description {
     color: white;
-    width: 80%;
-    font-size: 1.75rem;
+    width: 70%;
+    //font-size: 1.25rem;
   }
   &__code-container {
-    width: 100%;
+    width: 75%;
     height: 100%;
   }
   &__code {
@@ -108,9 +108,43 @@
     border: 2px solid white;
     border-radius: 10px;
     color: white;
-    font-size: 1rem;
+    //font-size: 1rem;
+    margin-bottom: 2rem;
     //width: 100px;
     //height: 100px;
+  }
+  &__iframe {
+    width: 75%; 
+    height: 50%; 
+    border:0; 
+    border-radius: 4px; 
+    overflow: hidden;
+    height: 500px;
+    //margin-top: 3rem;
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    //align-items: center;
+  }
+  &__footer-title {
+    padding-bottom: 1rem;
+  }
+  &__footer-links {
+    display: flex;
+    flex-direction: column;
+  }
+  &__link {
+    text-decoration: none;
+    padding-bottom: 0.8rem;
+    & span {
+      overflow: initial;
+      font-size: 1.9rem;
+      margin-left: 0.25rem;
+      display: inline-block;
+      transform: rotate(315deg);
+    }
   }
 }
 .injectHTML__box {

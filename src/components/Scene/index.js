@@ -1,17 +1,17 @@
-import React, { Suspense, useRef, useEffect, useMemo } from 'react';
-import { Canvas, useFrame, useLoader} from "react-three-fiber"
+import React, { Suspense, useRef, useEffect } from 'react';
+import { Canvas, useFrame } from "react-three-fiber"
 import lerp from 'lerp'
-import { TextureLoader, LinearFilter } from "three"
+//import { TextureLoader, LinearFilter } from "three"
 import Sphere from './Sphere/Sphere'
 import Lights from './Lights/Lights';
 import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
 import Terrain from './Terrain';
-import Demos from '../Demos/Demos';
+//import Demos from '../Demos/Demos';
 import store from '../../store';
 import { Block, useBlock } from "../Blocks/Blocks";
 import "./CustomMaterial/CustomerMaterial";
-import * as THREE from 'three';
+//import * as THREE from 'three';
 
 //console.log(Demp)
 function Plane({ color = "white", map, ...props }) {
@@ -49,32 +49,41 @@ function Cross() {
   )
 }
 
-function Content({ left, children, map }) {
-  const { contentMaxWidth, canvasWidth, margin } = useBlock()
-  const aspect = 1.75
-  const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
+function Content({ children, map }) {
+  const { 
+    contentMaxWidth, 
+    //canvasWidth, 
+    //margin 
+  } = useBlock()
+  const aspect = 15
+  //const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
   return (
     <group position={[0, 0, 0]}> {/*alignRight * (left ? -1 : 1),0,0*/}
-      <Plane scale={[contentMaxWidth, contentMaxWidth / aspect, 1]} color="#049ef4" map={map} /> {/*#bfe2ca */}
+      <Plane scale={[contentMaxWidth / aspect, contentMaxWidth / aspect / 2, 1]} color="#049ef4" map={map} /> {/*#bfe2ca */}
       {children}
     </group>
   )
 }
 
-function Stripe() {
-  const { contentMaxWidth } = useBlock()
-  return (
-    <Plane scale={[100, contentMaxWidth, 1]} rotation={[0, 0, Math.PI / 4]} position={[0, 0, -1]} color="#e3f6f5" />
-  )
-}
+//function Stripe() {
+//  const { contentMaxWidth } = useBlock()
+//  return (
+//    <Plane scale={[100, contentMaxWidth, 1]} rotation={[0, 0, Math.PI / 4]} position={[0, 0, -1]} color="#e3f6f5" />
+//  )
+//}
 
 function Pages() {
   //const textures = useLoader(TextureLoader, store.content.images)
   //const images = useLoader(TextureLoader, store.demos.map(({ dataCanonicalSrc }) => dataCanonicalSrc))
   //useMemo(() => images.forEach(texture => (texture.minFilter = LinearFilter)), [images])
-  const { contentMaxWidth, mobile } = useBlock()
-  const aspect = 1.75
-  const pixelWidth = contentMaxWidth * 75 //store.zoom
+  const { 
+    contentMaxWidth, 
+    //mobile 
+  } = useBlock()
+  //const size = aspect < 1 && !mobile ? 0.65 : 1
+  //const aspect = 15 //1.75
+  const pixelWidth = contentMaxWidth //75
+  console.log(pixelWidth)
   return (
     <>
       {/* First section */}
@@ -82,8 +91,8 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
-            style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}} //2
-            position={[-contentMaxWidth / 2 + 1.25, contentMaxWidth / 2 / aspect - 2.25, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.055}} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
+            position={[-pixelWidth / 38, 0, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
             <h1>REACT-THREE-FIBER</h1>
             <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
@@ -94,8 +103,8 @@ function Pages() {
           <HTML
             className="injectHTML" 
             zIndexRange={[4, 0]}  
-            //style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} //2
+            position={[-pixelWidth / 30, pixelWidth / 60, 1]}> 
             <div className="injectHTML__description">
               <h2>Why</h2>
               <p>{store.content.why}</p>
@@ -117,8 +126,8 @@ function Pages() {
         <HTML 
           className="injectHTML" 
           zIndexRange={[4, 0]}  
-          style={{ width: '100%'}} //2
-          position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
+          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
+          position={[-pixelWidth / 30, pixelWidth / 60, 1]}
         >
           <h1>Demos</h1>
         {/*<Demos />*/}
@@ -132,8 +141,8 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
-            //style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
-            position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
+            position={[-pixelWidth / 30, pixelWidth / 60, 1]}
           >
             <div className="injectHTML__description">
               <h1>Fundementals</h1>
@@ -159,8 +168,9 @@ function Pages() {
         <HTML 
           className="injectHTML" 
           zIndexRange={[4, 0]}  
-          //style={{ width: pixelWidth / (mobile ? 1 : 1)}} //2
-          position={[-contentMaxWidth / 2, contentMaxWidth / 2 / aspect - 0.4, 1]}>
+          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
+          position={[-pixelWidth / 30, pixelWidth / 60, 1]} //22
+        >
           <div className="injectHTML__code-container">
             <h1>GET STARTED</h1>
             <div className="injectHTML__code">
@@ -171,6 +181,52 @@ function Pages() {
               <h3>{`import ReactDOM from 'react-dom'`}</h3>
               <h3>{`import React, { useRef, useState } from 'react'`}</h3>
               <h3>{`import { Canvas, useFrame } from 'react-three-fiber'`}</h3>
+            </div>
+          </div>
+          <iframe
+            title='Basic Demo'
+            className="injectHTML__iframe"
+            src="https://codesandbox.io/embed/rrppl0y8l4"
+            allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+            sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+          />
+        </HTML>
+      </Block>
+      <Block factor={2} offset={5}>
+        <HTML 
+          className="injectHTML" 
+          zIndexRange={[4, 0]}  
+          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
+          position={[-pixelWidth / 30, 10, 1]}
+        >
+          <div className="injectHTML__footer">
+            <div className="injectHTML__docs-container">
+              <h1 className="injectHTML__footer-title">Docs</h1>
+              <div className="injectHTML__footer-links">
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Installation<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Main Concepts<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">API Reference<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Hooks<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Testing<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Contributing<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">FAQ<span>&#10132;</span></a>
+              </div>
+            </div>
+            <div className="injectHTML__community-container">
+              <h1 className="injectHTML__footer-title">Community</h1>
+              <div className="injectHTML__footer-links">
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Code Of Conduct<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Community Resources<span>&#10132;</span></a>
+              </div>
+            </div>
+            <div className="injectHTML__more-container">
+              <h1 className="injectHTML__footer-title">More</h1>
+              <div className="injectHTML__footer-links">
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Tutorial<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Blog<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Acknwoledgements<span>&#10132;</span></a>
+              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">React Native<span>&#10132;</span></a>
+              </div>
             </div>
           </div>
         </HTML>
@@ -203,7 +259,7 @@ const PlayerScene = () => {
         shadowMap
         concurrent
         //orthographic
-        camera={{ zoom: 6.5, position: [0, 0, 200] }}
+        camera={{ zoom: store.zoom, position: [0, 0, 250] }}
         //onCreated={({ gl }) => {
         //  //gl.toneMapping = THREE.ACESFilmicToneMapping
         //  //gl.outputEncoding = THREE.sRGBEncoding

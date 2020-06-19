@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
-import * as THREE from 'three'
+//import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
 
-const Cube = () => {
+const Sphere = () => {
   const ref = useRef()
 
   let theta = 0;
@@ -32,4 +32,4 @@ const Cube = () => {
   )
 }
 
-export default Cube
+export default Sphere

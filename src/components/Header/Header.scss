@@ -4,6 +4,7 @@
   z-index: 6;
   width: 100vw;
   height: 9vh;
+  background-color: rgba(0,0,0,0.25);
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -26,7 +27,6 @@
       margin-left: 0.25rem;
       display: inline-block;
       transform: rotate(315deg);
-      
     }
     &:hover {
       color: #53e0b3;
