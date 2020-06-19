@@ -91,8 +91,8 @@ function Pages() {
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.055}} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
-            position={[-pixelWidth / 38, 0, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.055, textAlign: 'center'}} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
+            position={[-pixelWidth / 22, 1, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
             <h1>REACT-THREE-FIBER</h1>
             <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
@@ -135,9 +135,9 @@ function Pages() {
       </Block>
       <Block factor={2} offset={3}>
         <Content>
-          <Block factor={-0.5}>
+          {/*<Block factor={-0.5}>
             <Cross />
-          </Block>
+          </Block>*/}
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
