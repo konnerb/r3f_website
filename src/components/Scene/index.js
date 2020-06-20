@@ -2,19 +2,17 @@ import React, { Suspense, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from "react-three-fiber"
 import lerp from 'lerp'
 //import { TextureLoader, LinearFilter } from "three"
+//import * as THREE from 'three';
 import Sphere from './Sphere/Sphere'
 import Lights from './Lights/Lights';
 import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
-import Terrain from './Terrain';
-//import Demos from '../Demos/Demos';
+import Planet from './Planet';
 import store from '../../store';
 import { Block, useBlock } from "../Blocks/Blocks";
 import "./CustomMaterial/CustomerMaterial";
-//import * as THREE from 'three';
 
-//console.log(Demp)
-function Plane({ color = "white", map, ...props }) {
+const Plane = ({ color = "white", map, ...props }) => {
   const { viewportHeight, offsetFactor } = useBlock()
   const material = useRef()
   let last = store.top.current
@@ -32,7 +30,7 @@ function Plane({ color = "white", map, ...props }) {
   )
 }
 
-//function Cross() {
+//const Cross = () => {
 //  const ref = useRef()
 //  const { viewportHeight } = useBlock()
 //  useFrame(() => {
@@ -49,7 +47,7 @@ function Plane({ color = "white", map, ...props }) {
 //  )
 //}
 
-function Content({ children, map }) {
+const Content = ({ children, map }) => {
   const { 
     contentMaxWidth, 
     //canvasWidth, 
@@ -59,20 +57,20 @@ function Content({ children, map }) {
   //const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
   return (
     <group position={[0, 0, 0]}> {/*alignRight * (left ? -1 : 1),0,0*/}
-      <Plane scale={[contentMaxWidth / aspect, contentMaxWidth / aspect / 2, 1]} color="#049ef4" map={map} /> {/*#bfe2ca */}
+      <Plane scale={[contentMaxWidth / aspect, contentMaxWidth / aspect / 2, 1]} color="#049ef4" map={map} />
       {children}
     </group>
   )
 }
 
-//function Stripe() {
+//const Stripe = () => {
 //  const { contentMaxWidth } = useBlock()
 //  return (
 //    <Plane scale={[100, contentMaxWidth, 1]} rotation={[0, 0, Math.PI / 4]} position={[0, 0, -1]} color="#e3f6f5" />
 //  )
 //}
 
-function Pages() {
+const Pages = () => {
   //const textures = useLoader(TextureLoader, store.content.images)
   //const images = useLoader(TextureLoader, store.demos.map(({ dataCanonicalSrc }) => dataCanonicalSrc))
   //useMemo(() => images.forEach(texture => (texture.minFilter = LinearFilter)), [images])
@@ -103,7 +101,7 @@ function Pages() {
           <HTML
             className="injectHTML" 
             zIndexRange={[4, 0]}  
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} //2
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
             position={[-pixelWidth / 30, pixelWidth / 60, 1]}> 
             <div className="injectHTML__description">
               <h2>Why</h2>
@@ -235,7 +233,7 @@ function Pages() {
   )
 }
 
-function Startup() {
+const Startup = () => {
   const ref = useRef()
   useFrame(() => (ref.current.material.opacity = lerp(ref.current.material.opacity, 0, 0.025)))
   return (
@@ -268,16 +266,11 @@ const PlayerScene = () => {
         //}}
       >
         <Suspense fallback={<HTML center className="loading" children="Loading..." />}>
-          <Terrain /> 
+          <Planet /> 
           <Sphere />
           <Lights />
           <OrbitControls />
-          <Stars 
-          //depth={-50}  
-          //radius={50}
-          //count={75000}  
-          //factor={5}   
-          />
+          <Stars />
           <Stats />
           <Pages />
           <Startup />

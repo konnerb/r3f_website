@@ -3,9 +3,6 @@ import './Demos.scss';
 import store from '../../store'
 import { Link } from 'react-router-dom'
 import VirtualPlayground from '../VirtualPlayground/VirtualPlayground'
-//import { HTML } from 'drei'
-//import { useLoader } from 'react-three-fiber'
-//import { TextureLoader, LinearFilter } from "three"
 import { useSprings, animated } from "react-spring";
 
 const calc = (x, y) => [
@@ -24,8 +21,6 @@ const Demos = ({match}) => {
     config: { mass: 5, tension: 350, friction: 40 }
   }));
 
-//const [state, setstate] = useState(false)
-//const params = match && match.params.name
   return (
     <div className="demo">
       <div className="demo__wrapper">
@@ -50,7 +45,6 @@ const Demos = ({match}) => {
               transform: props[index].xys.interpolate(trans)
             }}
               />
-              {/*<button className="demo__content-button" onclick={() => setstate(state = !state)}>Virual Playground</button>*/}
           </Link>
         </div>
       ))}
@@ -61,8 +55,3 @@ const Demos = ({match}) => {
 };
 
 export default Demos;
-
-//<mesh position={[offset - 5, 0, 0]}>
-//<planeBufferGeometry attach="geometry" args={[1, 1]} />
-//<meshBasicMaterial attach="material" map={images} />
-//</mesh>

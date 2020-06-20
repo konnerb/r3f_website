@@ -16,13 +16,6 @@ const VirtualPlayground = ({ match }) => {
         className="virtualPlayground__container" 
         key={i}>
         <h3>{content.title}</h3>
-          {/*<img
-            alt={`R3F ${content.title} Demo`}
-            className="virtualPlayground__img"
-            width="288" 
-            src={content.src} 
-            data-canonical-src={content.dataCanonicalSrc}
-          />*/}
         <iframe
           title={content.title}
           className="virtualPlayground__iframe"
