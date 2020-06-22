@@ -11,6 +11,7 @@ import Planet from './Planet';
 import store from '../../store';
 import { Block, useBlock } from "../Blocks/Blocks";
 import "./CustomMaterial/CustomerMaterial";
+import { Text } from './Text/Text'
 
 const Plane = ({ color = "white", map, ...props }) => {
   const { viewportHeight, offsetFactor } = useBlock()
@@ -95,6 +96,11 @@ const Pages = () => {
             <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
+      <Block factor={1.2}>
+          <Text left size={contentMaxWidth * 0.01} position={[-25, 0.5, -1]} color="#d40749">
+            MOKSHA
+          </Text>
+        </Block>
       {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Content>
