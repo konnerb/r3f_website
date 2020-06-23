@@ -1,8 +1,6 @@
 import React, { Suspense, useRef, useEffect } from 'react';
 import { Canvas, useFrame } from "react-three-fiber"
 import lerp from 'lerp'
-//import { TextureLoader, LinearFilter } from "three"
-//import * as THREE from 'three';
 import Sphere from './Sphere/Sphere'
 import Lights from './Lights/Lights';
 import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
@@ -86,21 +84,25 @@ const Pages = () => {
   return (
     <>
       {/* First section */}
-      <Block factor={1.5} offset={0}>
+      <Block factor={1.5}>
+          <Text left size={pixelWidth * 0.005} position={[-22, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
+            REACT-THREE-FIBER
+          </Text>
+        </Block>
+      <Block factor={1.0} offset={0}>
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
             style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.055, textAlign: 'center'}} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
-            position={[-pixelWidth / 22, 1, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
-            <h1>REACT-THREE-FIBER</h1>
+            position={[-pixelWidth / 22, -3, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
             <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
-      <Block factor={1.2}>
-          <Text left size={contentMaxWidth * 0.01} position={[-25, 0.5, -1]} color="#d40749">
-            MOKSHA
+      {/*<Block factor={1.2}>
+          <Text left size={pixelWidth * 0.0025} position={[-20, -5, -1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
+            A REACT RENDERER FOR THREE.JS
           </Text>
-        </Block>
+          </Block>*/}
       {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Content>

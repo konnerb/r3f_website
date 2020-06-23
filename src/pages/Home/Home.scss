@@ -13,11 +13,11 @@
       background-color: black;
       //overflow: visible;
       //color: #606063;
-        //& > div {
-        //  z-index: 10000000;
-        //}
-      }
-  }
+    }
+    & canvas > div {
+      z-index: 10000000;
+    }
+  } 
   &__img {
     //position: fixed;
     width: 100vw;
@@ -56,7 +56,7 @@
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  z-index: 5;
+  //z-index: 5;
 }
 
 //.canvas > div {
@@ -141,9 +141,4 @@
       transform: rotate(315deg);
     }
   }
-}
-.injectHTML__box {
-  width: 25px;
-  height: 25px;
-  background-color: red;
 }

@@ -12,3 +12,13 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   box-sizing: border-box;
 }
+
+#root {
+  overflow: auto;
+  padding: 0px;
+}
+
+a:focus, 
+a:hover {
+  color: #53e0b3;
+}
