@@ -5,10 +5,9 @@ import { noise } from "./perlin";
 //import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'; 
 //const perlin = new ImprovedNoise(), quality = 1, z = Math.random() * 100;
 import { DoubleSide } from "three";
-const Terrain = ({ aspect, aspectMult }) => {
+const Terrain = ({ aspect }) => {
     const [t, setT] = useState(0.0);
     const { size } = useThree()
-    //console.log(viewport)
     const stopRender = (aspect >= 1.00 || size.width >= 750) ? window.scrollY <= 900 : aspect <= 1.00 ? window.scrollY <= 550 : false
     const mesh = useUpdate(({ geometry }) => {
       noise.seed(5);
@@ -31,7 +30,6 @@ const Terrain = ({ aspect, aspectMult }) => {
           }
       }
       pos.needsUpdate = true;
-      //pos.verticesNeedUpdate = true;
     },[t]); 
 
   useFrame(() => {
@@ -42,13 +40,12 @@ const Terrain = ({ aspect, aspectMult }) => {
   <>
     <mesh 
     ref={mesh} 
-    //rotation={[-Math.PI / 2.7, 0, 0]}
     positon={[0,0,0]}
     receiveShadow
     > 
       <sphereBufferGeometry 
         attach="geometry" 
-        args={[20, 20, 100]} //150, 84, 100 
+        args={[20, 20, 100]}
       />
       <meshPhongMaterial
         side={DoubleSide}
@@ -57,7 +54,6 @@ const Terrain = ({ aspect, aspectMult }) => {
         specular={"blue"}
         shininess={3}
         smoothShading
-        //wireframe={true}
       />
     </mesh>
   </>

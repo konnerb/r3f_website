@@ -21,7 +21,8 @@
     text-decoration: none;
     font-size: 2rem;
     transition: .3s ease;
-    & span {
+    &::after {
+      content: ' \2794';
       overflow: initial;
       font-size: 1.9rem;
       margin-left: 0.25rem;

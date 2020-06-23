@@ -16,7 +16,6 @@ const App = () => (
           <Route path="/virtualplayground/:name" component={ Demos } />
           <Route path="*" component={ NotFound } />
         </Switch>
-      {/*<Footer />*/}
     </div>
   </BrowserRouter>
 );

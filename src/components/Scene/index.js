@@ -5,9 +5,9 @@ import Sphere from './Sphere/Sphere'
 import Lights from './Lights/Lights';
 import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
+import { Block, useBlock } from "../Blocks/Blocks";
 import Planet from './Planet';
 import store from '../../store';
-import { Block, useBlock } from "../Blocks/Blocks";
 import "./CustomMaterial/CustomerMaterial";
 import { Text } from './Text/Text'
 
@@ -62,17 +62,8 @@ const Content = ({ children, map }) => {
   )
 }
 
-//const Stripe = () => {
-//  const { contentMaxWidth } = useBlock()
-//  return (
-//    <Plane scale={[100, contentMaxWidth, 1]} rotation={[0, 0, Math.PI / 4]} position={[0, 0, -1]} color="#e3f6f5" />
-//  )
-//}
-
 const Pages = () => {
-  //const textures = useLoader(TextureLoader, store.content.images)
-  //const images = useLoader(TextureLoader, store.demos.map(({ dataCanonicalSrc }) => dataCanonicalSrc))
-  //useMemo(() => images.forEach(texture => (texture.minFilter = LinearFilter)), [images])
+
   const { 
     contentMaxWidth, 
     //mobile 
@@ -89,7 +80,7 @@ const Pages = () => {
             REACT-THREE-FIBER
           </Text>
         </Block>
-      <Block factor={1.0} offset={0}>
+      <Block factor={0.80} offset={0}>
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
@@ -98,12 +89,6 @@ const Pages = () => {
             <p>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
-      {/*<Block factor={1.2}>
-          <Text left size={pixelWidth * 0.0025} position={[-20, -5, -1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
-            A REACT RENDERER FOR THREE.JS
-          </Text>
-          </Block>*/}
-      {/* Second section */}
       <Block factor={2.0} offset={1}>
         <Content>
           <HTML
@@ -123,11 +108,6 @@ const Pages = () => {
           </HTML>
         </Content>
       </Block>
-      {/* Stripe 
-      <Block factor={-1.0} offset={1}>
-        <Stripe />
-      </Block>
-      {/* Last section*/}
       <Block factor={1.5} offset={2}>
         <HTML 
           className="injectHTML" 
@@ -136,14 +116,10 @@ const Pages = () => {
           position={[-pixelWidth / 30, pixelWidth / 60, 1]}
         >
           <h1>Demos</h1>
-        {/*<Demos />*/}
         </HTML>
       </Block>
       <Block factor={2} offset={3}>
         <Content>
-          {/*<Block factor={-0.5}>
-            <Cross />
-          </Block>*/}
           <HTML 
             className="injectHTML" 
             zIndexRange={[4, 0]}  
@@ -209,29 +185,29 @@ const Pages = () => {
             <div className="injectHTML__docs-container">
               <h1 className="injectHTML__footer-title">Docs</h1>
               <div className="injectHTML__footer-links">
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Installation<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Main Concepts<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">API Reference<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Hooks<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Testing<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Contributing<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">FAQ<span>&#10132;</span></a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Installation</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Main Concepts</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">API Reference</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Hooks</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Testing</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Contributing</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">FAQ</a>
               </div>
             </div>
             <div className="injectHTML__community-container">
               <h1 className="injectHTML__footer-title">Community</h1>
               <div className="injectHTML__footer-links">
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Code Of Conduct<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Community Resources<span>&#10132;</span></a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Code Of Conduct</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Community Resources</a>
               </div>
             </div>
             <div className="injectHTML__more-container">
               <h1 className="injectHTML__footer-title">More</h1>
               <div className="injectHTML__footer-links">
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Tutorial<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Blog<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">Acknwoledgements<span>&#10132;</span></a>
-              <a className="injectHTML__link" href="https://threejs.org/docs/" rel="noopener noreferrer" target="_blank">React Native<span>&#10132;</span></a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Tutorial</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Blog</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">Acknwoledgements</a>
+              <a className="injectHTML__link" href={store.testLink} rel="noopener noreferrer" target="_blank">React Native</a>
               </div>
             </div>
           </div>
