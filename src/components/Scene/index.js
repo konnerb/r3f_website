@@ -76,7 +76,7 @@ const Pages = () => {
     <>
       {/* First section */}
       <Block factor={1.5}>
-          <Text left size={pixelWidth * 0.005} position={[-22, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
+          <Text size={pixelWidth * 0.005} position={[contentMaxWidth * 0.0020, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
             REACT-THREE-FIBER
           </Text>
         </Block>
