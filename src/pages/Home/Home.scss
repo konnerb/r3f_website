@@ -54,7 +54,7 @@
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  //z-index: 5;
+  //z-index: 3;
 }
 
 .loading {
@@ -120,6 +120,7 @@
   &__link {
     text-decoration: none;
     padding-bottom: 0.8rem;
+    z-index: 7 !important;
     &::after {
       content: ' \2794';
       overflow: initial;
@@ -128,5 +129,12 @@
       display: inline-block;
       transform: rotate(315deg);
     }
+  }
+  &__docs-link {
+    //position: absolute;
+    z-index: 7 !important;
+    //text-decoration: none;
+   // padding-bottom: 0.8rem;
+
   }
 }

@@ -1,9 +1,9 @@
-import React, { Suspense, useRef, useEffect } from 'react';
+import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from "react-three-fiber"
 import lerp from 'lerp'
 import Sphere from './Sphere/Sphere'
 import Lights from './Lights/Lights';
-import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
+//import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
 import { Block, useBlock } from "../Blocks/Blocks";
 import Planet from './Planet';
@@ -62,7 +62,7 @@ const Content = ({ children, map }) => {
   )
 }
 
-const Pages = () => {
+const Pages = ({ portal }) => {
 
   const { 
     contentMaxWidth, 
@@ -71,10 +71,8 @@ const Pages = () => {
   //const size = aspect < 1 && !mobile ? 0.65 : 1
   //const aspect = 15 //1.75
   const pixelWidth = contentMaxWidth //75
-  console.log(pixelWidth)
   return (
     <>
-      {/* First section */}
       <Block factor={1.5}>
           <Text size={pixelWidth * 0.005} position={[contentMaxWidth * 0.0020, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
             REACT-THREE-FIBER
@@ -83,17 +81,23 @@ const Pages = () => {
       <Block factor={0.80} offset={0}>
           <HTML 
             className="injectHTML" 
-            zIndexRange={[4, 0]}  
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.055, textAlign: 'center'}} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
-            position={[-pixelWidth / 22, -3, 1]}> {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
-            <p>A REACT RENDERER FOR THREE.JS</p>
+            portal={portal} 
+            style={{ 
+              top: 'rem',
+              width: pixelWidth * 2, 
+              fontSize: pixelWidth * 0.055, 
+              textAlign: 'center'
+            }} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
+            position={[-pixelWidth / 22, -3, 1]}
+          > {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
+            <p style={{top: '10rem', fontSize: '2rem'}}>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
       <Block factor={2.0} offset={1}>
         <Content>
           <HTML
             className="injectHTML" 
-            zIndexRange={[4, 0]}  
+            portal={portal}
             style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
             position={[-pixelWidth / 30, pixelWidth / 60, 1]}> 
             <div className="injectHTML__description">
@@ -111,7 +115,7 @@ const Pages = () => {
       <Block factor={1.5} offset={2}>
         <HTML 
           className="injectHTML" 
-          zIndexRange={[4, 0]}  
+          portal={portal}
           style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
           position={[-pixelWidth / 30, pixelWidth / 60, 1]}
         >
@@ -122,7 +126,7 @@ const Pages = () => {
         <Content>
           <HTML 
             className="injectHTML" 
-            zIndexRange={[4, 0]}  
+            portal={portal}
             style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
             position={[-pixelWidth / 30, pixelWidth / 60, 1]}
           >
@@ -135,21 +139,21 @@ const Pages = () => {
               </ol>
               <h2>Some Reading Material:</h2>
               <ul>
-                <li><a href="https://threejs.org/docs/">Threejs-docs</a></li>
-                <li><a href="https://threejs.org/examples/">Threejs-examples</a></li>
-                <li><a href="https://threejsfundamentals.org/">Threejs-fundamentals</a></li>
-                <li><a href="https://discoverthreejs.com/">Discover Threejs</a></li>
-                <li><a href="https://discoverthreejs.com/tips-and-tricks/">Do's and don'ts</a>for performance and best practices</li>
-                <li><a href="https://alligator.io/react/react-with-threejs">react-three-fiber</a>alligator.io tutorial by <a href="https://twitter.com/dghez_">@dghez_</a></li>
+                <li><a className="injectHTML__docs-link" href="https://threejs.org/docs/">Threejs-docs</a></li>
+                <li><a className="injectHTML__docs-link" href="https://threejs.org/examples/">Threejs-examples</a></li>
+                <li><a className="injectHTML__docs-link" href="https://threejsfundamentals.org/">Threejs-fundamentals</a></li>
+                <li><a className="injectHTML__docs-link" href="https://discoverthreejs.com/">Discover Threejs</a></li>
+                <li><a className="injectHTML__docs-link" href="https://discoverthreejs.com/tips-and-tricks/">Do's and don'ts</a> for performance and best practices</li>
+                <li><a className="injectHTML__docs-link" href="https://alligator.io/react/react-with-threejs">react-three-fiber</a> alligator.io tutorial by <a href="https://twitter.com/dghez_">@dghez_</a></li>
               </ul>
             </div>
           </HTML>
         </Content>
       </Block>
-      <Block factor={1.5} offset={4}>
+      <Block factor={2.5} offset={4}>
         <HTML 
           className="injectHTML" 
-          zIndexRange={[4, 0]}  
+          portal={portal}
           style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
           position={[-pixelWidth / 30, pixelWidth / 60, 1]} //22
         >
@@ -174,10 +178,10 @@ const Pages = () => {
           />
         </HTML>
       </Block>
-      <Block factor={2} offset={5}>
+      <Block factor={1.5} offset={5}>
         <HTML 
           className="injectHTML" 
-          zIndexRange={[4, 0]}  
+          portal={portal} 
           style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
           position={[-pixelWidth / 30, 10, 1]}
         >
@@ -229,7 +233,8 @@ const Startup = () => {
 }
 
 const PlayerScene = () => {
-
+  const [events, setEvents] = useState()
+  const domContent = useRef()
   const scrollArea = useRef()
   const onScroll = e => (store.top.current = e.target.scrollTop)
   useEffect(() => void onScroll({ target: scrollArea.current }), [])
@@ -242,31 +247,35 @@ const PlayerScene = () => {
         concurrent
         //orthographic
         camera={{ zoom: store.zoom, position: [0, 0, 250] }}
-        //onCreated={({ gl }) => {
-        //  //gl.toneMapping = THREE.ACESFilmicToneMapping
-        //  //gl.outputEncoding = THREE.sRGBEncoding
-        //  //gl.shadowMap.enabled = true
-        //  gl.shadowMap.type = THREE.PCFSoftShadowMap
-        //}}
+        onCreated={({ gl, events }) => {
+          //gl.toneMapping = THREE.ACESFilmicToneMapping
+          //gl.outputEncoding = THREE.sRGBEncoding
+          //gl.shadowMap.enabled = true
+          //gl.shadowMap.type = THREE.PCFSoftShadowMap
+          setEvents(events)
+        }}
       >
         <Suspense fallback={<HTML center className="loading" children="Loading..." />}>
           <Planet /> 
           <Sphere />
           <Lights />
-          <OrbitControls />
+          {/*<OrbitControls />*/}
           <Stars />
           <Stats />
-          <Pages />
+          <Pages portal={domContent} />
           <Startup />
         </Suspense>
       </Canvas>
-      <div className="scrollArea" ref={scrollArea} onScroll={onScroll}>
-        { new Array(store.sections).fill().map((_, index) => (
-          <div key={index} id={"0" + index} style={{ height: `${(store.pages / store.sections) * 100}vh` }} />
-        ))}
+      <div className="scrollArea" ref={scrollArea} onScroll={onScroll} {...events}>
+        <div style={{ position: 'sticky', top: 0 }} ref={domContent} />
+        <div style={{ height: `${store.pages * 100}vh` }} />
       </div>
     </div>
   )
 };
 
 export default PlayerScene;
+
+//{ new Array(store.sections).fill().map((_, index) => (
+//  <div key={index} id={"0" + index} style={{ height: `${(store.pages / store.sections) * 100}vh` }} />
+//))}
