@@ -128,7 +128,7 @@ const Pages = ({ portal }) => {
             className="injectHTML" 
             portal={portal}
             style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
-            position={[-pixelWidth / 30, pixelWidth / 60, 1]}
+            position={[-pixelWidth / 30, pixelWidth / 65, 1]}
           >
             <div className="injectHTML__description">
               <h1>Fundementals</h1>
