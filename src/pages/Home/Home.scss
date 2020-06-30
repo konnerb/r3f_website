@@ -69,13 +69,10 @@
 //}
 
 .injectHTML {
-  //padding-top: 10px;
-  //transform: translate3d(200%, 0, 0);
   color: white;
-  font-size: 2rem;
   width: 100%;
   height: 100%;
-  position: relative !important;
+  //position: relative !important;
   padding-left: 2rem;
   & h2 {
     margin: 1rem 0rem;
@@ -83,6 +80,7 @@
   &__description {
     color: white;
     width: 70%;
+    margin: 0 auto;
   }
   &__code-container {
     width: 75%;
@@ -96,7 +94,7 @@
     margin-bottom: 2rem;
   }
   &__iframe {
-    width: 75%; 
+    width: 100%; 
     height: 50%; 
     border:0; 
     border-radius: 4px; 

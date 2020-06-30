@@ -7,7 +7,7 @@ const Sphere = () => {
 
   let theta = 0;
   useFrame(() => {
-    let r = 80;
+    let r = 225; 
     let dTheta = 2 * Math.PI / 4000;
 
     theta += dTheta;
@@ -23,7 +23,7 @@ const Sphere = () => {
       castShadow 
       receiveShadow
     >
-      <sphereBufferGeometry attach="geometry" args={[4, 4, 25]} />
+      <sphereBufferGeometry attach="geometry" args={[15, 15, 50]} /> //4, 4, 25
       <meshLambertMaterial 
         attach="material" 
         //side={THREE.DoubleSide} 

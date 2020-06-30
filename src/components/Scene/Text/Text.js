@@ -28,7 +28,7 @@ function Text({ children, size = 1, left, right, top, bottom, color = "white", o
 
   return (
     <group {...props} scale={[size, size, 0.1]}>
-      <mesh geometry={geom} onUpdate={onUpdate} frustumCulled={false}>
+      <mesh geometry={geom} onUpdate={onUpdate} frustumCulled={false} receiveShadow castShadow>
         <customMaterial ref={ref} attach="material" color={color} transparent opacity={opacity} />
       </mesh>
     </group>

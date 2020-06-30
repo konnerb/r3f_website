@@ -1,12 +1,12 @@
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from "react-three-fiber"
 import lerp from 'lerp'
-import Sphere from './Sphere/Sphere'
+import Moon from './Moon/Moon'
 import Lights from './Lights/Lights';
 //import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
 import { Block, useBlock } from "../Blocks/Blocks";
-import Planet from './Planet';
+import Planet from './Planet/Planet';
 import store from '../../store';
 import "./CustomMaterial/CustomerMaterial";
 import { Text } from './Text/Text'
@@ -52,7 +52,7 @@ const Content = ({ children, map }) => {
     //canvasWidth, 
     //margin 
   } = useBlock()
-  const aspect = 15
+  const aspect = 1.75 //15
   //const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
   return (
     <group position={[0, 0, 0]}> {/*alignRight * (left ? -1 : 1),0,0*/}
@@ -71,10 +71,11 @@ const Pages = ({ portal }) => {
   //const size = aspect < 1 && !mobile ? 0.65 : 1
   //const aspect = 15 //1.75
   const pixelWidth = contentMaxWidth //75
+  const aspect = 15
   return (
     <>
       <Block factor={1.5}>
-          <Text size={pixelWidth * 0.005} position={[contentMaxWidth * 0.0020, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
+          <Text size={pixelWidth * 0.05} position={[contentMaxWidth * 0.0020, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
             REACT-THREE-FIBER
           </Text>
         </Block>
@@ -83,23 +84,24 @@ const Pages = ({ portal }) => {
             className="injectHTML" 
             portal={portal} 
             style={{ 
-              top: 'rem',
               width: pixelWidth * 2, 
-              fontSize: pixelWidth * 0.055, 
-              textAlign: 'center'
-            }} //2style={{ width: '100%', textAlign: 'center', fontSize: '3rem'}}
-            position={[-pixelWidth / 22, -3, 1]}
-          > {/*position={[mobile ? -contentMaxWidth / 2 : 0, -contentMaxWidth / 2 / aspect - 0.4, 1]}*/}
-            <p style={{top: '10rem', fontSize: '2rem'}}>A REACT RENDERER FOR THREE.JS</p>
+              top: '3rem'
+              //textAlign: 'center'
+            }}
+            position={[-pixelWidth / 3.5, -3, 1]}
+          >
+            <p style={{top: '10rem', fontSize: pixelWidth * 0.07}}>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
       <Block factor={2.0} offset={1}>
         <Content>
           <HTML
             className="injectHTML" 
+            center
             portal={portal}
             style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
-            position={[-pixelWidth / 30, pixelWidth / 60, 1]}> 
+            position={[pixelWidth / 18, pixelWidth / 7, 1]}
+          > 
             <div className="injectHTML__description">
               <h2>Why</h2>
               <p>{store.content.why}</p>
@@ -115,9 +117,10 @@ const Pages = ({ portal }) => {
       <Block factor={1.5} offset={2}>
         <HTML 
           className="injectHTML" 
+          center
           portal={portal}
           style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
-          position={[-pixelWidth / 30, pixelWidth / 60, 1]}
+          position={[pixelWidth / 18, pixelWidth / 7, 1]}
         >
           <h1>Demos</h1>
         </HTML>
@@ -126,9 +129,10 @@ const Pages = ({ portal }) => {
         <Content>
           <HTML 
             className="injectHTML" 
+            center
             portal={portal}
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
-            position={[-pixelWidth / 30, pixelWidth / 65, 1]}
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
+            position={[pixelWidth / 18, pixelWidth / 7, 1]}
           >
             <div className="injectHTML__description">
               <h1>Fundementals</h1>
@@ -152,10 +156,11 @@ const Pages = ({ portal }) => {
       </Block>
       <Block factor={2.5} offset={4}>
         <HTML 
-          className="injectHTML" 
-          portal={portal}
-          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
-          position={[-pixelWidth / 30, pixelWidth / 60, 1]} //22
+            className="injectHTML" 
+            center
+            portal={portal}
+            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
+            position={[pixelWidth / 18 , pixelWidth / 7, 1]}
         >
           <div className="injectHTML__code-container">
             <h1>GET STARTED</h1>
@@ -168,7 +173,6 @@ const Pages = ({ portal }) => {
               <h3>{`import React, { useRef, useState } from 'react'`}</h3>
               <h3>{`import { Canvas, useFrame } from 'react-three-fiber'`}</h3>
             </div>
-          </div>
           <iframe
             title='Basic Demo'
             className="injectHTML__iframe"
@@ -176,14 +180,16 @@ const Pages = ({ portal }) => {
             allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
             sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
           />
+          </div>
         </HTML>
       </Block>
       <Block factor={1.5} offset={5}>
         <HTML 
           className="injectHTML" 
-          portal={portal} 
-          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
-          position={[-pixelWidth / 30, 10, 1]}
+          center
+          portal={portal}
+          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
+          position={[pixelWidth / 18, pixelWidth / 7, 1]}
         >
           <div className="injectHTML__footer">
             <div className="injectHTML__docs-container">
@@ -257,7 +263,7 @@ const PlayerScene = () => {
       >
         <Suspense fallback={<HTML center className="loading" children="Loading..." />}>
           <Planet /> 
-          <Sphere />
+          <Moon />
           <Lights />
           {/*<OrbitControls />*/}
           <Stars />
