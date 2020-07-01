@@ -1,13 +1,14 @@
 import React, { useRef } from 'react'
 //import * as THREE from 'three'
-import { useFrame } from 'react-three-fiber'
+import { useFrame, useThree } from 'react-three-fiber'
 
 const Sphere = () => {
   const ref = useRef()
+  const { size } = useThree()
 
   let theta = 0;
   useFrame(() => {
-    let r = 225; 
+    let r = Math.round(size.width * 0.15); 
     let dTheta = 2 * Math.PI / 4000;
 
     theta += dTheta;
@@ -23,7 +24,14 @@ const Sphere = () => {
       castShadow 
       receiveShadow
     >
-      <sphereBufferGeometry attach="geometry" args={[15, 15, 50]} /> //4, 4, 25
+      <sphereBufferGeometry 
+        attach="geometry" 
+        args={[
+          Math.round(size.width * 0.01), 
+          Math.round(size.width * 0.01), 
+          Math.round(size.width * 0.04)
+        ]}
+      />
       <meshLambertMaterial 
         attach="material" 
         //side={THREE.DoubleSide} 

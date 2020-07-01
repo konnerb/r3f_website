@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useFrame, useUpdate, useThree } from "react-three-fiber";
-
 import { noise } from "./perlin";
 //import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'; 
 //const perlin = new ImprovedNoise(), quality = 1, z = Math.random() * 100;
@@ -45,7 +44,7 @@ const Terrain = ({ aspect }) => {
     > 
       <sphereBufferGeometry 
         attach="geometry" 
-        args={[150, 150, 75]} //20,20,100
+        args={[Math.round(size.width * 0.12), Math.round(size.width * 0.12), Math.round(size.width * 0.06)]} //20,20,100
       />
       <meshPhongMaterial
         side={DoubleSide}

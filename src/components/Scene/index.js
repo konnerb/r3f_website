@@ -52,7 +52,7 @@ const Content = ({ children, map }) => {
     //canvasWidth, 
     //margin 
   } = useBlock()
-  const aspect = 1.75 //15
+  const aspect = 1.5 //15
   //const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
   return (
     <group position={[0, 0, 0]}> {/*alignRight * (left ? -1 : 1),0,0*/}
@@ -71,11 +71,16 @@ const Pages = ({ portal }) => {
   //const size = aspect < 1 && !mobile ? 0.65 : 1
   //const aspect = 15 //1.75
   const pixelWidth = contentMaxWidth //75
-  const aspect = 15
+  //const aspect = 15
   return (
     <>
       <Block factor={1.5}>
-          <Text size={pixelWidth * 0.05} position={[contentMaxWidth * 0.0020, 0, 1]} color="#D40749" font="/Josefin_Sans/JosefinSans_Bold.json">
+          <Text 
+            size={pixelWidth * 0.05} 
+            position={[contentMaxWidth * 0.0020, 0, 1]} 
+            color="#D40749" 
+            font="/Josefin_Sans/JosefinSans_Bold.json"
+          >
             REACT-THREE-FIBER
           </Text>
         </Block>
@@ -97,10 +102,10 @@ const Pages = ({ portal }) => {
         <Content>
           <HTML
             className="injectHTML" 
-            center
+            //center
             portal={portal}
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
-            position={[pixelWidth / 18, pixelWidth / 7, 1]}
+            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
+            position={[-pixelWidth / 2.5, pixelWidth / 7, 1]}
           > 
             <div className="injectHTML__description">
               <h2>Why</h2>
@@ -114,28 +119,28 @@ const Pages = ({ portal }) => {
           </HTML>
         </Content>
       </Block>
-      <Block factor={1.5} offset={2}>
+      {/*<Block factor={1.5} offset={2}>
         <HTML 
           className="injectHTML" 
-          center
+          //center
           portal={portal}
-          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03 }}
-          position={[pixelWidth / 18, pixelWidth / 7, 1]}
+          style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }}
+          position={[-pixelWidth / 2.5, pixelWidth / 7, 1]}
         >
           <h1>Demos</h1>
         </HTML>
-      </Block>
-      <Block factor={2} offset={3}>
+      </Block>*/}
+      <Block factor={2} offset={2}>
         <Content>
           <HTML 
             className="injectHTML" 
-            center
+            //center
             portal={portal}
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
-            position={[pixelWidth / 18, pixelWidth / 7, 1]}
+            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
+            position={[-pixelWidth / 2.5, pixelWidth / 7, 1]}
           >
             <div className="injectHTML__description">
-              <h1>Fundementals</h1>
+              <h1 className="injectHTML__description-title">Fundementals</h1>
               <ol>
                 <li>Before you start, make sure you have a <a href="https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene">basic grasp of Threejs.</a> </li>
                 <li>When you know what a scene is, a camera, mesh, geometry and material, more or less, fork the demo sandbox on the frontpage, try out some of the things you learn here.</li>
@@ -154,24 +159,19 @@ const Pages = ({ portal }) => {
           </HTML>
         </Content>
       </Block>
-      <Block factor={2.5} offset={4}>
+      <Block factor={2.5} offset={3}>
         <HTML 
             className="injectHTML" 
-            center
+            //center
             portal={portal}
-            style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
-            position={[pixelWidth / 18 , pixelWidth / 7, 1]}
+            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
+            position={[-pixelWidth / 3, pixelWidth / 7, 1]}
         >
           <div className="injectHTML__code-container">
-            <h1>GET STARTED</h1>
+            <h1 className="injectHTML__description-title">GET STARTED</h1>
             <div className="injectHTML__code">
               <h3>$ npm install three react-three-fiber</h3>
               <h3>$ yarn three react-three-fiber</h3>
-            </div>
-            <div className="injectHTML__code">
-              <h3>{`import ReactDOM from 'react-dom'`}</h3>
-              <h3>{`import React, { useRef, useState } from 'react'`}</h3>
-              <h3>{`import { Canvas, useFrame } from 'react-three-fiber'`}</h3>
             </div>
           <iframe
             title='Basic Demo'
@@ -183,13 +183,13 @@ const Pages = ({ portal }) => {
           </div>
         </HTML>
       </Block>
-      <Block factor={1.5} offset={5}>
+      <Block factor={1.5} offset={4}>
         <HTML 
           className="injectHTML" 
-          center
+          //center
           portal={portal}
-          style={{ width: pixelWidth * 2, fontSize: pixelWidth * 0.03}} 
-          position={[pixelWidth / 18, pixelWidth / 7, 1]}
+          style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
+          position={[-pixelWidth / 3, pixelWidth / 7, 1]}
         >
           <div className="injectHTML__footer">
             <div className="injectHTML__docs-container">
@@ -251,6 +251,7 @@ const PlayerScene = () => {
         pixelRatio={1} //window.devicePixelRatio
         shadowMap
         concurrent
+        //colorManagement
         //orthographic
         camera={{ zoom: store.zoom, position: [0, 0, 250] }}
         onCreated={({ gl, events }) => {
