@@ -18,7 +18,7 @@ const Plane = ({ color = "white", map, ...props }) => {
   useFrame(() => {
     const { pages, top } = store
     material.current.scale = lerp(material.current.scale, offsetFactor - top.current / ((pages - 1) * viewportHeight), 0.1)
-    material.current.shift = lerp(material.current.shift, (top.current - last) / 150, 0.1)
+    material.current.shift = lerp(material.current.shift, (top.current - last) / 150, 0.8)
     last = top.current
   })
   return (
@@ -29,22 +29,25 @@ const Plane = ({ color = "white", map, ...props }) => {
   )
 }
 
-//const Cross = () => {
-//  const ref = useRef()
-//  const { viewportHeight } = useBlock()
-//  useFrame(() => {
-//    const curTop = store.top.current
-//    const curY = ref.current.rotation.z
-//    const nextY = (curTop / ((store.pages - 1) * viewportHeight)) * Math.PI
-//    ref.current.rotation.z = lerp(curY, nextY, 0.1)
-//  })
-//  return (
-//    <group ref={ref} scale={[2, 2, 2]}>
-//      <Plane scale={[1, 0.2, 0.2]} color="#61dafb" />{/*#e2bfca*/}
-//      <Plane scale={[0.2, 1, 0.2]} color="#61dafb" />
-//    </group>
-//  )
-//}
+const X = () => {
+  const ref = useRef()
+  const { viewportHeight, contentMaxWidth } = useBlock()
+  const aspect = 1.5
+  useFrame(() => {
+    const curTop = store.top.current
+    const curY = ref.current.rotation.z
+    const nextY = (curTop / ((store.pages - 1) * viewportHeight)) * Math.PI
+    ref.current.rotation.z = lerp(curY, nextY, 0.1)
+  })
+  return (
+    <group ref={ref} scale={[contentMaxWidth / aspect / 2 , contentMaxWidth / aspect / 2, 2]}
+      //position={[0,0,-3]}
+    >
+      <Plane scale={[1, 0.2, 0.2]} color="#61dafb" />{/*#e2bfca*/}
+      <Plane scale={[0.2, 1, 0.2]} color="#61dafb" />
+    </group>
+  )
+}
 
 const Content = ({ children, map }) => {
   const { 
@@ -53,9 +56,8 @@ const Content = ({ children, map }) => {
     //margin 
   } = useBlock()
   const aspect = 1.5 //15
-  //const alignRight = (canvasWidth - contentMaxWidth - margin) / 2
   return (
-    <group position={[0, 0, 0]}> {/*alignRight * (left ? -1 : 1),0,0*/}
+    <group position={[0, 0, 0]}>
       <Plane scale={[contentMaxWidth / aspect, contentMaxWidth / aspect / 2, 1]} color="#049ef4" map={map} />
       {children}
     </group>
@@ -132,6 +134,9 @@ const Pages = ({ portal }) => {
       </Block>*/}
       <Block factor={2} offset={2}>
         <Content>
+          <Block factor={-3.5}>
+            <X />
+          </Block>
           <HTML 
             className="injectHTML" 
             //center
@@ -184,6 +189,9 @@ const Pages = ({ portal }) => {
         </HTML>
       </Block>
       <Block factor={1.5} offset={4}>
+        <Block factor={2}>
+          <X />
+        </Block>
         <HTML 
           className="injectHTML" 
           //center

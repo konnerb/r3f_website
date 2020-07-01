@@ -22,7 +22,7 @@ function Text({ children, size = 1, left, right, top, bottom, color = "white", o
   const ref = useRef()
   let last = store.top.current
   useFrame(() => {
-    ref.current.shift = lerp(ref.current.shift, (store.top.current - last) / 100, 0.1)
+    ref.current.shift = lerp(ref.current.shift, (store.top.current - last) / 100, 0.8)
     last = store.top.current
   })
 

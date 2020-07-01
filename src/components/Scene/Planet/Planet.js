@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useFrame, useUpdate, useThree } from "react-three-fiber";
 import { noise } from "./perlin";
-//import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'; 
-//const perlin = new ImprovedNoise(), quality = 1, z = Math.random() * 100;
 import { DoubleSide } from "three";
-const Terrain = ({ aspect }) => {
+
+const Terrain = () => {
     const [t, setT] = useState(0.0);
     const { size } = useThree()
-    const stopRender = (aspect >= 1.00 || size.width >= 750) ? window.scrollY <= 900 : aspect <= 1.00 ? window.scrollY <= 550 : false
     const mesh = useUpdate(({ geometry }) => {
       noise.seed(5);
       let pos = geometry.getAttribute("position");
@@ -31,10 +29,12 @@ const Terrain = ({ aspect }) => {
       pos.needsUpdate = true;
     },[t]); 
 
-  useFrame(() => {
-    stopRender && setT(t + 0.001)
-    //mesh.current.rotation.y += .00025
-  });
+    useFrame(state => {
+      const clock = state.clock.getElapsedTime()
+      mesh.current.position.y = Math.sin(clock / 2) * 1.1
+      setT(t + 0.001)
+    });
+    
   return (
   <>
     <mesh 
