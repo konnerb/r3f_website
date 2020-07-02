@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-//import * as THREE from 'three'
+import { DoubleSide } from "three";
 import { useFrame, useThree } from 'react-three-fiber'
 
 const Sphere = () => {
@@ -34,7 +34,11 @@ const Sphere = () => {
       />
       <meshLambertMaterial 
         attach="material" 
-        //side={THREE.DoubleSide} 
+        //side={DoubleSide}
+        color={"white"}
+        specular={"blue"}
+        shininess={3}
+        smoothShading
       />
     </mesh>
   )

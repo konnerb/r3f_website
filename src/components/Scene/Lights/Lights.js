@@ -17,7 +17,7 @@ const Lights = () => {
         //penumbra={1}
         //angle={Math.PI / 2.85}
         intensity={0.75} //2.5
-        position={[0, -1, 350]} //0,15,1
+        position={[0, -7, 250]} //0,15,1
         color={0xff0000} //0xd3d3d3
         castShadow
       >

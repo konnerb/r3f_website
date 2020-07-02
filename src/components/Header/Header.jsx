@@ -5,7 +5,7 @@ import './Header.scss';
 const Header = () => (
 
   <header className="header">
-    <NavLink className="header__link" to="/">R3F</NavLink>
+    <NavLink className="header__link title" to="/">R3F</NavLink>
     <div className="header__links">
     <NavLink className="header__link" to="/virtualplayground/BasicDemo">Demos</NavLink>
     <a className="header__link" href="https://github.com/react-spring/react-three-fiber/discussions" rel="noopener noreferrer" target="_blank">Discussions</a>

@@ -290,7 +290,3 @@ const PlayerScene = () => {
 };
 
 export default PlayerScene;
-
-//{ new Array(store.sections).fill().map((_, index) => (
-//  <div key={index} id={"0" + index} style={{ height: `${(store.pages / store.sections) * 100}vh` }} />
-//))}
