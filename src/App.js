@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
-import Demos from './components/Demos/Demos'
+import Demos from './pages/Demos/Demos'
 
 const App = () => (
 
