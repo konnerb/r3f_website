@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import './Pages.scss'
+import './Pages.scss';
 import { useFrame } from "react-three-fiber";
 import lerp from 'lerp';
 import { HTML } from 'drei';
@@ -24,7 +24,7 @@ const Plane = ({ color = "white", map, ...props }) => {
       <customMaterial ref={material} attach="material" color={color} /> {/*map={map}*/}
     </mesh>
   )
-}
+};
 
 const X = () => {
   const ref = useRef()
@@ -42,7 +42,7 @@ const X = () => {
       <Plane scale={[0.2, 1, 0.2]} color="#61dafb" />
     </group>
   )
-}
+};
 
 const Content = ({ children, map }) => {
   const { 
@@ -57,7 +57,7 @@ const Content = ({ children, map }) => {
       {children}
     </group>
   )
-}
+};
 
 const Pages = ({ portal }) => {
 
@@ -228,6 +228,6 @@ const Pages = ({ portal }) => {
       </Block>
     </>
   )
-}
+};
 
 export default Pages;

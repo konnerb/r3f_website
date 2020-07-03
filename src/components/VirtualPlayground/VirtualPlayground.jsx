@@ -24,7 +24,7 @@ const VirtualPlayground = ({ match }) => {
           sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
         />
       </div>
-      ))
+    ))
     }
   </div>
 

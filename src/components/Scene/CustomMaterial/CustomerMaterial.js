@@ -1,6 +1,8 @@
 import { ShaderMaterial, Color } from "three"
 import { extend } from "react-three-fiber"
 
+//Custom warping shader
+
 class CustomMaterial extends ShaderMaterial {
   constructor() {
     super({
@@ -77,6 +79,6 @@ class CustomMaterial extends ShaderMaterial {
   set opacity(value) {
     if (this.uniforms) this.uniforms.opacity.value = value
   }
-}
+};
 
-extend({ CustomMaterial })
+extend({ CustomMaterial });

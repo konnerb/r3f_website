@@ -1,11 +1,14 @@
-import React, { createContext, useRef, useContext } from "react"
-import { useFrame, useThree } from "react-three-fiber"
-import lerp from "lerp"
-import store from "../../store"
+import React, { createContext, useRef, useContext } from "react";
+import { useFrame, useThree } from "react-three-fiber";
+import lerp from "lerp";
+import store from "../../store";
 
 const offsetContext = createContext(0)
 
-function Block({ children, offset, factor, ...props }) {
+//This Block wraps the offset that it is given into a context provider so that nested blocks 
+//and components can read it out. Without an offset it falls back to the parent offset.
+
+const Block = ({ children, offset, factor, ...props }) => {
   const { offset: parentOffset, sectionHeight } = useBlock()
   const ref = useRef()
   offset = offset !== undefined ? offset : parentOffset
@@ -21,9 +24,11 @@ function Block({ children, offset, factor, ...props }) {
       </group>
     </offsetContext.Provider>
   )
-}
+};
 
-function useBlock() {
+//Allows any component to access block-specific data.
+
+const useBlock = () => {
   const { sections, pages, zoom } = store
   const { size, viewport } = useThree()
   const offset = useContext(offsetContext)
@@ -47,6 +52,6 @@ function useBlock() {
     contentMaxWidth,
     sectionHeight
   }
-}
+};
 
-export { Block, useBlock }
+export { Block, useBlock };

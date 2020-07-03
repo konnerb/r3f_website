@@ -5,7 +5,24 @@ import usePromise from "react-promise-suspense";
 import lerp from "lerp";
 import store from "../../../store";
 
-function Text({ children, size = 1, left, right, top, bottom, color = "white", opacity = 1, height = 10, layers = 0, font = "/Josefin_Sans/JosefinSans_Regular.json", ...props }) {
+//Rendered TextBufferGeometry
+
+const Text =
+  ({ 
+    children, 
+    size = 1, 
+    left, 
+    right, 
+    top, 
+    bottom, 
+    color = "white", 
+    opacity = 1, 
+    height = 10, 
+    layers = 0, 
+    font = "/Josefin_Sans/JosefinSans_Regular.json",
+    ...props 
+  }) => {
+
   const data = useLoader(FontLoader, font)
   const geom = usePromise(() => new Promise(res => res(new TextBufferGeometry(children, { font: data, size: 1, height, curveSegments: 32}))), [children])
   const onUpdate = useCallback(
@@ -33,6 +50,6 @@ function Text({ children, size = 1, left, right, top, bottom, color = "white", o
       </mesh>
     </group>
   )
-}
+};
 
-export { Text }
+export { Text };

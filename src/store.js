@@ -1,4 +1,4 @@
-import { createRef } from "react"
+import { createRef } from "react";
 
 const store = {
   sections: 3,
