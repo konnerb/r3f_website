@@ -1,6 +1,6 @@
 import React from 'react';
 import './VirtualPlayground.scss';
-import store from '../../store'
+import store from '../../store';
 
 const VirtualPlayground = ({ match }) => {
 

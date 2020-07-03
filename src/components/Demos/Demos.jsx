@@ -2,7 +2,7 @@ import React from 'react';
 import './Demos.scss';
 import store from '../../store'
 import { Link } from 'react-router-dom'
-import VirtualPlayground from '../VirtualPlayground/VirtualPlayground'
+import VirtualPlayground from '../../pages/VirtualPlayground/VirtualPlayground'
 import { useSprings, animated } from "react-spring";
 
 const calc = (x, y) => [

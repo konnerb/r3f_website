@@ -6,11 +6,10 @@ extend({ OrbitControls });
 
 const Controls = props => {
   const ref = useRef();
-  const {
-    camera,
-    gl: { domElement }
-  } = useThree();
+  const { camera, gl: { domElement } } = useThree();
+
   useFrame(() => ref.current && ref.current.update());
+  
   return <orbitControls ref={ref} args={[camera, domElement]} {...props} />;
 };
 

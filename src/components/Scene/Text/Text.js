@@ -1,9 +1,9 @@
-import { FontLoader, Vector3, TextBufferGeometry } from "three"
-import React, { useCallback, useRef } from "react"
-import { useLoader, useFrame } from "react-three-fiber"
-import usePromise from "react-promise-suspense"
-import lerp from "lerp"
-import store from "../../../store"
+import { FontLoader, Vector3, TextBufferGeometry } from "three";
+import React, { useCallback, useRef } from "react";
+import { useLoader, useFrame } from "react-three-fiber";
+import usePromise from "react-promise-suspense";
+import lerp from "lerp";
+import store from "../../../store";
 
 function Text({ children, size = 1, left, right, top, bottom, color = "white", opacity = 1, height = 10, layers = 0, font = "/Josefin_Sans/JosefinSans_Regular.json", ...props }) {
   const data = useLoader(FontLoader, font)
