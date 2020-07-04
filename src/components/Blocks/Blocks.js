@@ -9,9 +9,11 @@ const offsetContext = createContext(0)
 //and components can read it out. Without an offset it falls back to the parent offset.
 
 const Block = ({ children, offset, factor, ...props }) => {
+
   const { offset: parentOffset, sectionHeight } = useBlock()
   const ref = useRef()
   offset = offset !== undefined ? offset : parentOffset
+
   useFrame(() => {
     const curY = ref.current.position.y
     const curTop = store.top.current
@@ -29,6 +31,7 @@ const Block = ({ children, offset, factor, ...props }) => {
 //Allows any component to access block-specific data.
 
 const useBlock = () => {
+  
   const { sections, pages, zoom } = store
   const { size, viewport } = useThree()
   const offset = useContext(offsetContext)
@@ -38,8 +41,9 @@ const useBlock = () => {
   const canvasHeight = viewportHeight / zoom
   const mobile = size.width < 700
   const margin = canvasWidth * (mobile ? 0.2 : 0.1)
-  const contentMaxWidth = canvasWidth * (mobile ? 0.90 : 0.90) //(mobile ? 0.8 : 0.6)
+  const contentMaxWidth = canvasWidth * (mobile ? 0.95 : 0.90) //(mobile ? 0.8 : 0.6)
   const sectionHeight = (canvasHeight / zoom) * ((pages - 1) / (sections - 1))
+  
   return {
     viewport,
     offset,

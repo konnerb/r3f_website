@@ -4,8 +4,10 @@ import { noise } from "./perlin";
 import { DoubleSide } from "three";
 
 const Terrain = () => {
+
     const [t, setT] = useState(0.0);
     const { size } = useThree()
+    
     const mesh = useUpdate(({ geometry }) => {
       noise.seed(5);
       let pos = geometry.getAttribute("position");
@@ -46,9 +48,9 @@ const Terrain = () => {
         attach="geometry" 
         args={[Math.round(size.width * 0.12), Math.round(size.width * 0.12), Math.round(size.width * 0.06)]} //20,20,100
       />
-      <meshPhongMaterial
-        side={DoubleSide}
+      <meshStandardMaterial
         attach="material"
+        side={DoubleSide}
         color={"white"}
         specular={"blue"}
         shininess={3}

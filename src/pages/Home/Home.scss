@@ -56,7 +56,10 @@
 }
 
 .loading {
-  font-size: 2rem;
+  font-size: 1rem;
   padding: 10px;
   transform: translate3d(-50%, -50%, 0);
+  @include tablet {
+    font-size: 2rem;
+  }
 }

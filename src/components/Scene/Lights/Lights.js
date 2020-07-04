@@ -14,14 +14,15 @@ const Lights = () => {
       />
       <spotLight
         //ref={ref3}
-        //penumbra={1}
-        //angle={Math.PI / 2.85}
+        penumbra={0.75}
+        //distance={550}
+        //angle={Math.PI / 3}
         intensity={0.75} //2.5
-        position={[0, -7, 250]} //0,15,1
+        position={[-1, -7, 250]} //0,15,1
         color={0xff0000} //0xd3d3d3
         castShadow
       >
-      {/*{sLight3 && <spotLightHelper args={[sLight3]} />}*/}
+      {/*{sLight3 && <spotLightHelper args={[sLight3]}/>}*/}
       </spotLight>
       {/*<directionalLight
       ref={ref3}

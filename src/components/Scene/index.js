@@ -1,8 +1,8 @@
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from "react-three-fiber";
+//import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import { Stats, Stars, HTML } from 'drei';
 import lerp from 'lerp';
-//import OrbitControls from '../../components/Scene/OrbitControls/OrbitControls';
 import Lights from './Lights/Lights';
 import Pages from './Pages/Pages'
 import Moon from './Moon/Moon';
@@ -10,7 +10,9 @@ import Planet from './Planet/Planet';
 import store from '../../store';
 
 const Startup = () => {
+
   const ref = useRef()
+
   useFrame(() => (ref.current.material.opacity = lerp(ref.current.material.opacity, 0, 0.025)))
   return (
     <mesh ref={ref} position={[0, 0, 200]} scale={[150, 150, 1]}>
@@ -23,9 +25,11 @@ const Startup = () => {
 //Renders scene via Canvas element
 
 const PlayerScene = () => {
+  
   const [events, setEvents] = useState()
   const domContent = useRef()
   const scrollArea = useRef()
+
   const onScroll = e => (store.top.current = e.target.scrollTop)
   useEffect(() => void onScroll({ target: scrollArea.current }), [])
 

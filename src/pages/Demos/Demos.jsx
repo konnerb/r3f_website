@@ -1,9 +1,9 @@
 import React from 'react';
+import { useSprings, animated } from "react-spring";
+import { Link } from 'react-router-dom';
 import './Demos.scss';
 import store from '../../store';
-import { Link } from 'react-router-dom';
 import VirtualPlayground from '../../components/VirtualPlayground/VirtualPlayground';
-import { useSprings, animated } from "react-spring";
 
 const calc = (x, y) => [
   -(y - window.innerHeight / 2) / 20,
@@ -14,6 +14,7 @@ const calc = (x, y) => [
 const trans = (x, y, s) => `perspective(150px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
 const Demos = ({match}) => {
+  
   const [props, set] = useSprings(store.demos.length, i => ({
     xys: [0, 0, 1],
     config: { mass: 5, tension: 350, friction: 40 }

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useFrame, useThree } from 'react-three-fiber';
 
 const Moon = () => {
+
   const ref = useRef()
   const { size } = useThree()
 
@@ -16,7 +17,7 @@ const Moon = () => {
     
     ref.current.position.x = r * Math.cos(theta);
     ref.current.position.z = r * Math.sin(theta); 
-})
+  })
 
   return (
     <mesh 

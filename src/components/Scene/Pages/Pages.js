@@ -1,17 +1,19 @@
 import React, { useRef } from 'react';
-import './Pages.scss';
 import { useFrame } from "react-three-fiber";
 import lerp from 'lerp';
 import { HTML } from 'drei';
+import './Pages.scss';
 import { Block, useBlock } from "../../Blocks/Blocks";
-import "../CustomMaterial/CustomerMaterial";
 import { Text } from '../Text/Text';
+import "../CustomMaterial/CustomerMaterial";
 import store from '../../../store';
 
 const Plane = ({ color = "white", map, ...props }) => {
+
   const { viewportHeight, offsetFactor } = useBlock()
   const material = useRef()
   let last = store.top.current
+
   useFrame(() => {
     const { pages, top } = store
     material.current.scale = lerp(material.current.scale, offsetFactor - top.current / ((pages - 1) * viewportHeight), 0.1)
@@ -26,10 +28,25 @@ const Plane = ({ color = "white", map, ...props }) => {
   )
 };
 
+const Content = ({ children, map }) => {
+
+  const { contentMaxWidth, mobile } = useBlock()
+  const aspect = mobile ? 1.2 : 1.5 
+
+  return (
+    <group position={[0, 0, 0]}>
+      <Plane scale={[contentMaxWidth / aspect, contentMaxWidth / (mobile ? aspect : aspect) / (mobile ? 1 :  2), 1]} color="#049ef4" map={map} />
+      {children}
+    </group>
+  )
+};
+
 const X = () => {
+
   const ref = useRef()
-  const { viewportHeight, contentMaxWidth } = useBlock()
-  const aspect = 1.5
+  const { viewportHeight, contentMaxWidth, mobile } = useBlock()
+  const aspect = mobile ? 1.2 : 1.5
+
   useFrame(() => {
     const curTop = store.top.current
     const curY = ref.current.rotation.z
@@ -44,31 +61,13 @@ const X = () => {
   )
 };
 
-const Content = ({ children, map }) => {
-  const { 
-    contentMaxWidth, 
-    //canvasWidth, 
-    //margin 
-  } = useBlock()
-  const aspect = 1.5 //15
-  return (
-    <group position={[0, 0, 0]}>
-      <Plane scale={[contentMaxWidth / aspect, contentMaxWidth / aspect / 2, 1]} color="#049ef4" map={map} />
-      {children}
-    </group>
-  )
-};
-
 const Pages = ({ portal }) => {
 
-  const { 
-    contentMaxWidth, 
-    //mobile 
-  } = useBlock()
-  //const size = aspect < 1 && !mobile ? 0.65 : 1
-  //const aspect = 15 //1.75
-  const pixelWidth = contentMaxWidth //75
-  //const aspect = 15
+  const { contentMaxWidth, mobile } = useBlock()
+  const pixelWidth = contentMaxWidth
+  const fSize = mobile ? 0.06 : 0.025
+  const pSize = mobile ? 2.5 : 7
+
   return (
     <>
       <Block factor={1.5}>
@@ -87,12 +86,12 @@ const Pages = ({ portal }) => {
             portal={portal} 
             style={{ 
               width: pixelWidth * 2, 
-              top: '3rem'
+              top: mobile ? '1rem' : '3rem'
               //textAlign: 'center'
             }}
             position={[-pixelWidth / 3.5, -3, 1]}
           >
-            <p style={{top: '10rem', fontSize: pixelWidth * 0.07}}>A REACT RENDERER FOR THREE.JS</p>
+            <p style={{ fontSize: pixelWidth * 0.07 }}>A REACT RENDERER FOR THREE.JS</p>
           </HTML>
       </Block>
       <Block factor={2.0} offset={1}>
@@ -101,8 +100,8 @@ const Pages = ({ portal }) => {
             className="pages" 
             //center
             portal={portal}
-            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
-            position={[-pixelWidth / 2.5, pixelWidth / 7, 1]}
+            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
+            position={[-pixelWidth / 2.5, pixelWidth / pSize, 1]}
           > 
             <div className="pages__description">
               <h2>Why</h2>
@@ -136,8 +135,8 @@ const Pages = ({ portal }) => {
             className="pages" 
             //center
             portal={portal}
-            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
-            position={[-pixelWidth / 2.5, pixelWidth / 7, 1]}
+            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
+            position={[-pixelWidth / 2.5, pixelWidth / pSize, 1]}
           >
             <div className="pages__description">
               <h1 className="pages__description-title">Fundementals</h1>
@@ -164,7 +163,7 @@ const Pages = ({ portal }) => {
             className="pages" 
             //center
             portal={portal}
-            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
+            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
             position={[-pixelWidth / 3, pixelWidth / 7, 1]}
         >
           <div className="pages__code-container">
@@ -191,7 +190,7 @@ const Pages = ({ portal }) => {
           className="pages" 
           //center
           portal={portal}
-          style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * 0.025 }} 
+          style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
           position={[-pixelWidth / 3, pixelWidth / 7, 1]}
         >
           <div className="pages__footer">
