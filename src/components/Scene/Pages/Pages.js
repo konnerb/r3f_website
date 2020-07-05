@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useFrame } from "react-three-fiber";
+import { useFrame, useThree } from "react-three-fiber";
 import lerp from 'lerp';
 import { HTML } from 'drei';
 import './Pages.scss';
@@ -20,6 +20,7 @@ const Plane = ({ color = "white", map, ...props }) => {
     material.current.shift = lerp(material.current.shift, (top.current - last) / 150, 0.8)
     last = top.current
   })
+
   return (
     <mesh {...props}>
       <planeBufferGeometry attach="geometry" args={[1, 1, 32, 32]} />
@@ -31,7 +32,7 @@ const Plane = ({ color = "white", map, ...props }) => {
 const Content = ({ children, map }) => {
 
   const { contentMaxWidth, mobile } = useBlock()
-  const aspect = mobile ? 1.2 : 1.5 
+  const aspect = mobile ? 1.1 : 1.5 
 
   return (
     <group position={[0, 0, 0]}>
@@ -53,6 +54,7 @@ const X = () => {
     const nextY = (curTop / ((store.pages - 1) * viewportHeight)) * Math.PI
     ref.current.rotation.z = lerp(curY, nextY, 0.1)
   })
+  
   return (
     <group ref={ref} scale={[contentMaxWidth / aspect / 2 , contentMaxWidth / aspect / 2, 2]}>
       <Plane scale={[1, 0.2, 0.2]} color="#61dafb" />{/*#e2bfca*/}
@@ -64,44 +66,42 @@ const X = () => {
 const Pages = ({ portal }) => {
 
   const { contentMaxWidth, mobile } = useBlock()
+  const { size } = useThree()
   const pixelWidth = contentMaxWidth
   const fSize = mobile ? 0.06 : 0.025
-  const pSize = mobile ? 2.5 : 7
 
   return (
     <>
       <Block factor={1.5}>
-          <Text 
-            size={pixelWidth * 0.05} 
-            position={[contentMaxWidth * 0.0020, 0, 1]} 
-            color="#D40749" 
-            font="/Josefin_Sans/JosefinSans_Bold.json"
-          >
-            REACT-THREE-FIBER
-          </Text>
-        </Block>
+        <Text 
+          size={pixelWidth * 0.05} 
+          position={[contentMaxWidth * 0.0020, 0, 1]} 
+          color="#D40749" 
+          font="/Josefin_Sans/JosefinSans_Bold.json"
+        >
+          REACT-THREE-FIBER
+        </Text>
+      </Block>
       <Block factor={0.80} offset={0}>
-          <HTML 
-            className="pages" 
-            portal={portal} 
-            style={{ 
-              width: pixelWidth * 2, 
-              top: mobile ? '1rem' : '3rem'
-              //textAlign: 'center'
-            }}
-            position={[-pixelWidth / 3.5, -3, 1]}
-          >
-            <p style={{ fontSize: pixelWidth * 0.07 }}>A REACT RENDERER FOR THREE.JS</p>
-          </HTML>
+        <HTML 
+          center
+          className="pages" 
+          portal={portal} 
+          style={{ 
+            width: size.width, 
+            top: mobile ? '3rem' : '5rem'
+          }}
+        >
+          <p style={{ fontSize: pixelWidth * 0.07, textAlign: 'center' }}>A REACT RENDERER FOR THREE.JS</p>
+        </HTML>
       </Block>
       <Block factor={2.0} offset={1}>
         <Content>
           <HTML
             className="pages" 
-            //center
+            center
             portal={portal}
-            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
-            position={[-pixelWidth / 2.5, pixelWidth / pSize, 1]}
+            style={{ width: size.width, fontSize: pixelWidth * fSize }} 
           > 
             <div className="pages__description">
               <h2>Why</h2>
@@ -133,10 +133,9 @@ const Pages = ({ portal }) => {
           </Block>
           <HTML 
             className="pages" 
-            //center
+            center
             portal={portal}
-            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
-            position={[-pixelWidth / 2.5, pixelWidth / pSize, 1]}
+            style={{ width: size.width, fontSize: pixelWidth * fSize }} 
           >
             <div className="pages__description">
               <h1 className="pages__description-title">Fundementals</h1>
@@ -160,11 +159,12 @@ const Pages = ({ portal }) => {
       </Block>
       <Block factor={2.5} offset={3}>
         <HTML 
-            className="pages" 
-            //center
-            portal={portal}
-            style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
-            position={[-pixelWidth / 3, pixelWidth / 7, 1]}
+          className="pages" 
+          center
+          portal={portal}
+          style={{ 
+            width: size.width, 
+            fontSize: pixelWidth * fSize }} 
         >
           <div className="pages__code-container">
             <h1 className="pages__description-title">GET STARTED</h1>
@@ -188,10 +188,9 @@ const Pages = ({ portal }) => {
         </Block>
         <HTML 
           className="pages" 
-          //center
+          center
           portal={portal}
-          style={{ width: pixelWidth * 1.75, fontSize: pixelWidth * fSize }} 
-          position={[-pixelWidth / 3, pixelWidth / 7, 1]}
+          style={{ width: size.width, fontSize: pixelWidth * fSize }} 
         >
           <div className="pages__footer">
             <div className="pages__docs-container">

@@ -14,6 +14,7 @@ const Startup = () => {
   const ref = useRef()
 
   useFrame(() => (ref.current.material.opacity = lerp(ref.current.material.opacity, 0, 0.025)))
+  
   return (
     <mesh ref={ref} position={[0, 0, 200]} scale={[150, 150, 1]}>
       <planeBufferGeometry attach="geometry" />
