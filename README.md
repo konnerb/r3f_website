@@ -3,3 +3,11 @@
 ## React-Three-Fiber Prototype
 
 This repo is [Live](https://tender-jennings-3c7df9.netlify.app)
+
+## How to run locally
+
+```bash
+git clone https://github.com/konnerb/r3f_website.git
+cd r3f_website
+npm i && npm start
+```
